@@ -37,6 +37,11 @@ body {
     max-width: 800px;
     width: 100%;
     text-align: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -49,7 +54,7 @@ body {
     padding: 60px 50px;
     border-radius: 24px;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(  10px);
     position: relative;
     overflow: hidden;
     animation: fadeInUp 0.8s ease;
@@ -172,36 +177,6 @@ h1 {
    FEATURES
 ============================== */
 
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-top: 50px;
-}
-
-.feature-item {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.feature-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
-}
-
-.feature-icon {
-    font-size: 40px;
-    margin-bottom: 15px;
-}
-
-.feature-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #2d3748;
-}
 
 
 /* ==============================
@@ -243,34 +218,21 @@ h1 {
 
 <div class="welcome-container">
     <div class="welcome-card">
-        <div class="welcome-icon">🎉</div>
+        <div class="welcome-icon"></div>
         <h1>Bem-vindo ao Sistema de Estoque</h1>
         <p class="welcome-text">Você está logado com sucesso! Gerencie seu estoque de forma eficiente e moderna.</p>
         
         <div class="action-buttons">
-            <a href="index.php?rota=dashboard" class="btn-primary">
-                <span>📊</span>
-                Ir para Dashboard
-            </a>
-            <a href="index.php?rota=equipamentos" class="btn-secondary">
-                <span>📦</span>
-                Ver Equipamentos
-            </a>
+            <?php
+            if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+            $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+            if ($nivel === 'basico'):
+            ?>
+                <a href="index.php?rota=solicitacoes" class="btn-primary">Ir para Solicitações</a>
+            <?php else: ?>
+                <a href="index.php?rota=dashboard" class="btn-primary">Ir para Dashboard</a>
+                <a href="index.php?rota=equipamentos" class="btn-secondary">Ver Equipamentos</a>
+            <?php endif; ?>
         </div>
-    </div>
-
-    <div class="features">
-        <div class="feature-item">
-            <div class="feature-icon">⚡</div>
-            <div class="feature-title">Rápido</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">🔒</div>
-            <div class="feature-title">Seguro</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">📱</div>
-            <div class="feature-title">Responsivo</div>
-        </div>
-    </div>
+</div>
 </div>

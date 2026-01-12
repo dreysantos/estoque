@@ -36,6 +36,12 @@ class Funcionario {
         ");
         return $stmt->execute([$id_setor, $nome, $sobrenome, preg_replace('/[^0-9]/', '', $telefone), $matricula, preg_replace('/[^0-9]/', '', $cpf)]);
     }
+    
+        public function existeMatricula($matricula) {
+            $stmt = $this->db->prepare("SELECT id FROM funcionarios WHERE numero_matricula = ? LIMIT 1");
+            $stmt->execute([$matricula]);
+            return $stmt->fetch(PDO::FETCH_ASSOC) !== false;
+        }
 
     public function atualizar($id, $id_setor, $nome, $sobrenome, $telefone, $matricula, $cpf) {
         $stmt = $this->db->prepare("

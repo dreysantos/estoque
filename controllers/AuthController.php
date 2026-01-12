@@ -18,7 +18,7 @@ class AuthController {
 
         if ($usuario && password_verify($senha, $usuario['senha'])) {
             $_SESSION['usuario'] = $usuario;
-            header('Location: index.php?rota=dashboard');
+            header('Location: index.php?rota=home');
             exit;
         }
 

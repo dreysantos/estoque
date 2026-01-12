@@ -1,215 +1,41 @@
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+/* Theme: Dax/Alpha palette (navy + orange accent) */
+:root{
+    --primary:#0b3d91;
+    --primary-2:#0e5bb3;
+    --accent:#ff8a00;
+    --accent-2:#ff6a00;
+    --bg-1:#f4f7fb;
+    --bg-2:#eef6ff;
+    --muted:#2b3d5a;
 }
 
-/* ==============================
-   FUNDO DA PÁGINA
-============================== */
-
-body {
-    background: linear-gradient(135deg, #f5f7fa, #ffffff, #f0f4f8);
-    min-height: 100vh;
-    padding: 40px;
-    color: #1a1a1a;
+body{
+    background: linear-gradient(135deg,var(--bg-1),var(--bg-2));
+    color: #1f2937;
 }
 
+/* Header */
+.header h2, h2{ color: var(--primary); }
+.header .actions a, .btn-primary{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; }
 
-/* ==============================
-   CONTAINER DO FORMULÁRIO
-============================== */
+/* Accent button */
+button[type="submit"], .btn-accent{ background: linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; }
 
-form {
-    max-width: 900px;
-    margin: auto;
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 14px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border: 2px solid #1a73e8;
-}
+/* Table */
+.table-wrap{ border-color: var(--primary); }
+.table thead th{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; }
+.table tbody tr:nth-child(odd){ background:#f8fbff; }
+.table tbody tr:hover{ background:#eaf2ff; }
 
+/* Card links */
+.card-link:hover{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; border-color:var(--primary); }
 
-/* ==============================
-   TÍTULOS
-============================== */
+/* Small helpers */
+.back a{ color: var(--primary); }
 
-h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 32px;
-    letter-spacing: 1px;
-    color: #1a73e8;
-}
-
-h3 {
-    margin: 30px 0 15px;
-    font-size: 22px;
-    color: #1f5fb8;
-    border-left: 4px solid #1a73e8;
-    padding-left: 10px;
-}
-
-
-/* ==============================
-   LABELS
-============================== */
-
-label {
-    font-weight: 600;
-    font-size: 14px;
-    color: #333333;
-}
-
-
-/* ==============================
-   INPUTS, SELECT, TEXTAREA
-============================== */
-
-select,
-input[type="number"],
-textarea {
-    width: 100%;
-    margin-top: 6px;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #d0d7de;
-    background: #ffffff;
-    color: #1a1a1a;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 90px;
-}
-
-
-/* FOCUS */
-
-select:focus,
-input:focus,
-textarea:focus {
-    outline: none;
-    border-color: #1a73e8;
-    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.15);
-}
-
-
-/* ==============================
-   TABELA DE ITENS
-============================== */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th {
-    background: linear-gradient(90deg, #1a73e8, #1f5fb8);
-    color: #ffffff;
-    text-align: left;
-    padding: 14px;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-}
-
-td {
-    padding: 12px;
-    background: #f8fafc;
-    border-bottom: 1px solid #e0e6ed;
-}
-
-tr:hover td {
-    background: #f0f7ff;
-}
-
-
-/* ==============================
-   BOTÕES
-============================== */
-
-button {
-    padding: 12px 22px;
-    border-radius: 8px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 0.5px;
-}
-
-
-/* Botão principal */
-
-button[type="submit"],
-form>button:last-of-type {
-    background: linear-gradient(135deg, #1a73e8, #1f5fb8);
-    color: #ffffff;
-    margin-top: 25px;
-}
-
-button[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3);
-}
-
-
-/* Botão adicionar item */
-
-button[type="button"] {
-    background: #f0f4f8;
-    color: #1a73e8;
-    border: 2px solid #1a73e8;
-}
-
-button[type="button"]:hover {
-    background: #1a73e8;
-    color: #ffffff;
-}
-
-
-/* Botão remover */
-
-td button {
-    background: #d32f2f;
-    color: #ffffff;
-    padding: 8px 14px;
-}
-
-td button:hover {
-    background: #b71c1c;
-}
-
-
-/* ==============================
-   RESPONSIVO
-============================== */
-
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-    form {
-        padding: 25px;
-    }
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
-        font-size: 13px;
-    }
-    h2 {
-        font-size: 26px;
-    }
-}
+/* Ensure readable badges */
+.status-badge{ padding:6px 8px; background:#faf5ef; border-radius:6px; color:var(--muted); }
 </style>
 <h2>Nova Entrada</h2>
 

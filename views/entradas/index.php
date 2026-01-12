@@ -1,182 +1,41 @@
 <style>
-/* ==============================
-   RESET BÁSICO
-============================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+/* Theme: Dax/Alpha palette (navy + orange accent) */
+:root{
+    --primary:#0b3d91;
+    --primary-2:#0e5bb3;
+    --accent:#ff8a00;
+    --accent-2:#ff6a00;
+    --bg-1:#f4f7fb;
+    --bg-2:#eef6ff;
+    --muted:#2b3d5a;
 }
 
-
-/* ==============================
-   FUNDO DA PÁGINA
-============================== */
-
-body {
-    background: linear-gradient(135deg, #f5f7fa, #ffffff, #e8eef7);
-    min-height: 100vh;
-    padding: 40px;
-    color: #1a1a1a;
+body{
+    background: linear-gradient(135deg,var(--bg-1),var(--bg-2));
+    color: #1f2937;
 }
 
+/* Header */
+.header h2, h2{ color: var(--primary); }
+.header .actions a, .btn-primary{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; }
 
-/* ==============================
-   CONTAINER PRINCIPAL
-============================== */
+/* Accent button */
+button[type="submit"], .btn-accent{ background: linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; }
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-}
+/* Table */
+.table-wrap{ border-color: var(--primary); }
+.table thead th{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; }
+.table tbody tr:nth-child(odd){ background:#f8fbff; }
+.table tbody tr:hover{ background:#eaf2ff; }
 
-h1, h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 36px;
-    color: #0f2027;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+/* Card links */
+.card-link:hover{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; border-color:var(--primary); }
 
+/* Small helpers */
+.back a{ color: var(--primary); }
 
-/* ==============================
-   TABELA ESTILIZADA
-============================== */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #e0e6ed;
-}
-
-thead {
-    background: linear-gradient(90deg, #1a73e8, #1f5fb8);
-}
-
-th {
-    padding: 18px 15px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 15px;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    border: none;
-}
-
-td {
-    padding: 16px 15px;
-    border-bottom: 1px solid #e8eef7;
-    color: #333333;
-    font-size: 14px;
-}
-
-tbody tr {
-    transition: all 0.3s ease;
-}
-
-tbody tr:hover {
-    background: #f8fafc;
-    box-shadow: inset 0 0 10px rgba(26, 115, 232, 0.08);
-}
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-
-/* ==============================
-   BOTÕES DE AÇÃO
-============================== */
-
-.acoes {
-    display: flex;
-    gap: 8px;
-}
-
-.btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 13px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-editar {
-    background: #1a73e8;
-    color: #ffffff;
-}
-
-.btn-editar:hover {
-    background: #1557b0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
-}
-
-.btn-deletar {
-    background: #d32f2f;
-    color: #ffffff;
-}
-
-.btn-deletar:hover {
-    background: #b71c1c;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
-}
-
-.btn-novo {
-    background: linear-gradient(135deg, #1a73e8, #1f5fb8);
-    color: #ffffff;
-    padding: 12px 24px;
-    font-size: 15px;
-    margin-bottom: 25px;
-    display: inline-block;
-    border: none;
-}
-
-.btn-novo:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(26, 115, 232, 0.3);
-}
-
-
-/* ==============================
-   RESPONSIVO
-============================== */
-
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-
-    h1, h2 {
-        font-size: 26px;
-    }
-
-    table {
-        font-size: 12px;
-    }
-
-    th, td {
-        padding: 12px 8px;
-    }
-
-    .btn {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-}
+/* Ensure readable badges */
+.status-badge{ padding:6px 8px; background:#faf5ef; border-radius:6px; color:var(--muted); }
 </style>
 
 <div class="container">

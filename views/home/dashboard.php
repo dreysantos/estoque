@@ -23,8 +23,15 @@ body {
 ============================== */
 
 .dashboard-container {
-    max-width: 1400px;
+    max-width: 1100px;
     margin: 48px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 16px;
+    min-height: calc(100vh - 160px);
 }
 
 
@@ -34,13 +41,14 @@ body {
 
 .dashboard-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 0;
     background: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(6px);
     width: 100%;
+    max-width: 820px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,9 +84,12 @@ body {
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
     list-style: none;
+    width: 100%;
+    max-width: 980px;
+    margin: 18px auto 40px auto;
 }
 
 .card {
@@ -234,7 +245,12 @@ body {
         <p class="welcome-text">Bem-vindo, <span class="welcome-name"><?= htmlspecialchars($_SESSION['usuario']['nome'] ?? 'Usuário') ?></span>!</p>
     </div>
 
+    <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+    $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+    ?>
+
     <ul class="cards-grid">
+        <?php if ($nivel !== 'basico'): ?>
         <li class="card">
             <div class="card-icon">🏢</div>
             <h3 class="card-title">Setores</h3>
@@ -298,6 +314,7 @@ body {
             </div>
         </li>
 
+        <?php endif; ?>
         <li class="card">
             <div class="card-icon">📋</div>
             <h3 class="card-title">Solicitações</h3>

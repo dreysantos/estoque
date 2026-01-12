@@ -16,4 +16,16 @@ class SolicitacaoEquipamento {
         ");
         return $stmt->execute([$id_solicitacao, $id_equipamento, $qtd]);
     }
+        public function listarPorSolicitacao($id_solicitacao) {
+            $stmt = $this->db->prepare("SELECT se.id as id, se.id_equipamento as id_equipamento, se.quantidade as quantidade, e.nome as nome, e.marca as marca FROM solicitacao_equipamentos se INNER JOIN equipamentos e ON se.id_equipamento = e.id WHERE se.id_solicitacao = ?");
+            $stmt->execute([$id_solicitacao]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function deleteBySolicitacao($id_solicitacao) {
+            $stmt = $this->db->prepare("DELETE FROM solicitacao_equipamentos WHERE id_solicitacao = ?");
+            return $stmt->execute([$id_solicitacao]);
+        }
+
 }
+

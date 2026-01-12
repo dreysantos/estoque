@@ -16,17 +16,30 @@ class FuncionarioController {
 
         if ($_POST) {
             $func = new Funcionario();
-            $func->criar(
+            $matricula = $_POST['matricula'];
+            if ($func->existeMatricula($matricula)) {
+                if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+                $_SESSION['flash_error'] = 'Número de matrícula já existe. Escolha outro.';
+                header("Location: index.php?rota=funcionario_create");
+                exit;
+            }
+            $ok = $func->criar(
                 $_POST['id_setor'],
                 $_POST['nome'],
                 $_POST['sobrenome'],
                 $_POST['telefone'],
-                $_POST['matricula'],
+                $matricula,
                 $_POST['cpf']
             );
             if (session_status() !== PHP_SESSION_ACTIVE) session_start();
-            $_SESSION['flash_success'] = 'Funcionário criado com sucesso.';
-            header("Location: index.php?rota=funcionarios");
+            if ($ok) {
+                $_SESSION['flash_success'] = 'Funcionário criado com sucesso.';
+                header("Location: index.php?rota=funcionarios");
+            } else {
+                $_SESSION['flash_error'] = 'Erro ao criar funcionário. Verifique os dados e tente novamente.';
+                header("Location: index.php?rota=funcionario_create");
+            }
+            exit;
         }
 
         require __DIR__ . '/../views/funcionarios/create.php';

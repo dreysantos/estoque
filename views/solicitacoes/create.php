@@ -2,9 +2,9 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; }
 
-/* Paleta única: brown/tan (não usada antes) */
+/* Paleta: Dax/Alpha - Navy (primária) + Laranja (acento) */
 body {
-    background: linear-gradient(135deg, #f8f5f2, #eee6dd, #f3eadf);
+    background: linear-gradient(135deg, #f4f7fb, #eef6ff);
     min-height: 100vh;
     padding: 40px;
     color: #1f2937;
@@ -17,25 +17,25 @@ h2 {
     margin-bottom: 24px;
     font-size: 30px;
     font-weight: 800;
-    color: #6B4F2A; /* dark brown */
+    color: #0b3d91; /* navy */
 }
 
 form {
     background: #ffffff;
     padding: 28px;
     border-radius: 14px;
-    border: 2px solid #8B5E34; /* brown */
-    box-shadow: 0 10px 30px rgba(139, 94, 52, 0.18);
+    border: 2px solid #0b3d91; /* navy */
+    box-shadow: 0 10px 30px rgba(11, 61, 145, 0.08);
 }
 
-label { display: block; font-weight: 700; font-size: 14px; color: #5b4a36; margin-bottom: 8px; }
+label { display: block; font-weight: 700; font-size: 14px; color: #2b3d5a; margin-bottom: 8px; }
 .field { margin-bottom: 18px; }
 
 select, textarea {
     width: 100%;
     padding: 12px;
     border-radius: 10px;
-    border: 1px solid #D6BC8C; /* tan */
+    border: 1px solid #cfe2ff;
     background: #ffffff;
     color: #1f2937;
     font-size: 14px;
@@ -44,7 +44,7 @@ select, textarea {
 
 textarea { min-height: 120px; resize: vertical; }
 
-select:focus, textarea:focus { outline: none; border-color: #8B5E34; box-shadow: 0 0 0 3px rgba(139, 94, 52, 0.22); }
+select:focus, textarea:focus { outline: none; border-color: #0e5bb3; box-shadow: 0 0 0 3px rgba(14, 91, 179, 0.12); }
 
 .actions { margin-top: 8px; display: flex; gap: 12px; }
 
@@ -53,7 +53,7 @@ button[type="submit"] {
     padding: 14px 20px;
     border-radius: 10px;
     border: none;
-    background: linear-gradient(135deg, #8B5E34, #A1683A);
+    background: linear-gradient(135deg, #ff8a00, #ff6a00); /* laranja acento */
     color: #ffffff;
     font-weight: 700;
     font-size: 16px;
@@ -62,10 +62,10 @@ button[type="submit"] {
     transition: all 0.25s ease;
 }
 
-button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(161, 104, 58, 0.35); }
+button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 138, 0, 0.25); }
 
 .back { margin-top: 14px; text-align: center; }
-.back a { color: #8B5E34; font-weight: 700; text-decoration: none; }
+.back a { color: #0b3d91; font-weight: 700; text-decoration: none; }
 .back a:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {

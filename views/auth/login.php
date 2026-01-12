@@ -1,95 +1,46 @@
 <style>
-    
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; }
+/* Refined Dax/Alpha Login - cleaner, professional, less square */
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
 
-/* Paleta inédita para login: dark charcoal + neon lime + lilac */
-body {
-    min-height: 100vh;
-    background: radial-gradient(circle at 15% 20%, rgba(160, 255, 120, 0.14), transparent 30%),
-                            radial-gradient(circle at 80% 0%, rgba(192, 132, 252, 0.18), transparent 35%),
-                            linear-gradient(135deg, #0c0f1a, #101726, #0d1320);
-    color: #e5e7eb;
-    padding: 120px 16px;
-    display: flex;
-    flex-direction: column; /* mantém o título acima do cartão */
-    align-items: center;
-    justify-content: center;
-    gap: 64px;
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+    font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    color:var(--muted);
+    display:flex;align-items:center;justify-content:center;padding:32px;
 }
 
-body > h1 {
-    color: #a3e635;
-    font-size: 24px;
-    font-weight: 800;
-    text-align: center;
-    text-shadow: 0 4px 14px rgba(163, 230, 53, 0.25);
-    margin-bottom: 18px;
-}
+.login-wrap{width:100%;max-width:420px}
 
-.card {
-    width: 100%;
-    max-width: 420px;
-    background: rgba(16, 23, 38, 0.9);
-    border: 1px solid rgba(160, 255, 120, 0.25);
-    border-radius: 16px;
-    padding: 28px;
-    margin-top: 12px; /* separa ainda mais do título */
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(192, 132, 252, 0.15) inset;
-    backdrop-filter: blur(8px);
+.card{
+    background:#fff;border-radius:20px;padding:28px;border:none;
+    box-shadow:0 18px 50px rgba(11,61,145,0.06);
 }
+.title{ text-align:center;font-size:22px;font-weight:700;color:var(--primary);margin-bottom:6px }
+.subtitle{ text-align:center;color:#6b7280;font-size:13px;margin-bottom:14px }
 
-.title { text-align: center; font-size: 28px; font-weight: 800; color: #a3e635; margin-bottom: 8px; }
-.subtitle { text-align: center; color: #c084fc; margin-bottom: 18px; font-size: 14px; }
+.flash{ background:#fff4f4;border:1px solid rgba(248,113,113,0.18);color:#b91c1c;padding:10px;border-radius:10px;margin-bottom:12px;font-size:13px }
 
-.flash {
-    background: rgba(248, 113, 113, 0.1);
-    border: 1px solid rgba(248, 113, 113, 0.45);
-    color: #fecdd3;
-    padding: 10px 12px;
-    border-radius: 10px;
-    margin-bottom: 14px;
-    font-size: 14px;
+.form-row{margin-bottom:12px}
+label.sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+input[type="text"], input[type="password"]{
+    width:100%;padding:12px 14px;border-radius:12px;border:0;background:#f6f9fc;color:#102a43;font-size:14px;box-shadow:inset 0 1px 0 rgba(16,24,40,0.03)
 }
+input::placeholder{color:#9aa8bd}
+input:focus{outline:none !important;box-shadow:none !important}
 
-.field { margin-bottom: 14px; }
-input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(192, 132, 252, 0.4);
-    background: #0e1524;
-    color: #e5e7eb;
-    font-size: 14px;
-    transition: all 0.25s ease;
-}
-input::placeholder { color: #94a3b8; }
-input:focus { outline: none; border-color: #a3e635; box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.28); }
+.actions{margin-top:8px}
+button[type="submit"]{width:100%;padding:12px;border-radius:12px;border:none;background:linear-gradient(90deg,var(--primary),var(--primary-2));color:#fff;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(14,91,179,0.12);transition:transform .14s ease,box-shadow .14s ease}
+button[type="submit"]:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(14,91,179,0.16)}
 
-.actions { margin-top: 6px; }
-button[type="submit"] {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    border: none;
-    background: linear-gradient(135deg, #a3e635, #6ee7b7, #c084fc);
-    color: #0c0f1a;
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: 0.4px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 12px 32px rgba(163, 230, 53, 0.28);
-}
-button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(163, 230, 53, 0.36); }
+.meta{margin-top:12px;text-align:center;color:#94a3b8;font-size:13px}
 
-@media (max-width: 520px) {
-    body { padding: 24px 12px; }
-    .card { padding: 22px; }
-    .title { font-size: 24px; }
-}
+@media (max-width:520px){body{padding:18px}.card{padding:18px}.title{font-size:20px}}
 </style>
 
-<div class="card">
+<div class="login-wrap">
+  <div class="card">
     <div class="title">Login</div>
     <div class="subtitle">Acesse o sistema de estoque</div>
 
@@ -97,15 +48,20 @@ button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 14px 38
         <div class="flash"><?php echo htmlspecialchars($_SESSION['erro']); unset($_SESSION['erro']); ?></div>
     <?php endif; ?>
 
-    <form method="post" action="index.php?rota=auth">
-        <div class="field">
-            <input type="text" name="nome" placeholder="Usuário" required>
+    <form method="post" action="index.php?rota=auth" aria-label="Formulário de login">
+        <div class="form-row">
+            <label class="sr-only" for="input-nome">Usuário</label>
+            <input id="input-nome" type="text" name="nome" placeholder="Usuário" required autocomplete="username">
         </div>
-        <div class="field">
-            <input type="password" name="senha" placeholder="Senha" required>
+        <div class="form-row">
+            <label class="sr-only" for="input-senha">Senha</label>
+            <input id="input-senha" type="password" name="senha" placeholder="Senha" required autocomplete="current-password">
         </div>
         <div class="actions">
             <button type="submit">Entrar</button>
         </div>
     </form>
+
+    <div class="meta">Acesse com suas credenciais.</div>
+  </div>
 </div>

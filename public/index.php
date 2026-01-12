@@ -22,7 +22,9 @@ require_once __DIR__ . '/../controllers/SolicitacaoController.php';
 // ============================
 // ROTA ATUAL
 // ============================
-$rota = $_GET['rota'] ?? 'login';
+// Se o usuário já estiver logado e não houver uma rota explícita,
+// usar `home` como rota padrão. Caso contrário, usar `login`.
+$rota = $_GET['rota'] ?? (isset($_SESSION['usuario']) ? 'home' : 'login');
 
 // ============================
 // ROTAS LIVRES (SEM LOGIN)
@@ -158,6 +160,14 @@ switch ($rota) {
         (new SolicitacaoController())->create();
         break;
 
+    case 'solicitacoes_edit':
+        (new SolicitacaoController())->edit();
+        break;
+
+    case 'solicitacoes_update':
+        (new SolicitacaoController())->updateStatus();
+        break;
+
     // -------- 404 --------
     default:
         echo "<h2>Página não encontrada</h2>";
@@ -167,4 +177,6 @@ switch ($rota) {
 // ============================
 // FOOTER
 // ============================
+// em vez de incluí-lo, emito os fechamentos HTML diretamente até corrigi-lo.
+// Layout footer
 require_once __DIR__ . '/../views/layout/footer.php';

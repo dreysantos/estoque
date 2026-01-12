@@ -3,6 +3,28 @@
 // rota padrão
 $rota = $_GET['rota'] ?? 'home';
 
+// iniciar sessão e aplicar regras de acesso básicas
+if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+$usuarioSess = $_SESSION['usuario'] ?? null;
+$nivelSess = $usuarioSess['nivel_acesso'] ?? null;
+
+// se não estiver autenticado, permitir apenas login/auth e home
+$publicRoutes = ['login', 'auth', 'home'];
+if (!$usuarioSess && !in_array($rota, $publicRoutes)) {
+    header('Location: index.php?rota=login');
+    exit;
+}
+
+// se for usuário básico, limitar rotas permitidas a solicitações e logout
+if ($usuarioSess && $nivelSess === 'basico') {
+    $allowed = ['home', 'solicitacoes', 'solicitacoes_create', 'solicitacoes', 'logout'];
+    if (!in_array($rota, $allowed)) {
+        $_SESSION['flash_error'] = 'Acesso negado para seu nível de usuário.';
+        header('Location: index.php?rota=solicitacoes');
+        exit;
+    }
+}
+
 // ==========================
 // ROTAS
 // ==========================
@@ -119,6 +141,16 @@ switch ($rota) {
     case 'solicitacoes_create':
         require_once __DIR__ . '/../controllers/SolicitacaoController.php';
         (new SolicitacaoController())->create();
+        break;
+
+    case 'solicitacoes_edit':
+        require_once __DIR__ . '/../controllers/SolicitacaoController.php';
+        (new SolicitacaoController())->edit();
+        break;
+
+    case 'solicitacoes_update':
+        require_once __DIR__ . '/../controllers/SolicitacaoController.php';
+        (new SolicitacaoController())->updateStatus();
         break;
 
     // ---------- 404 ----------

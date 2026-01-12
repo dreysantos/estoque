@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../models/Solicitacao.php';
 require_once __DIR__ . '/../models/Usuario.php';
 require_once __DIR__ . '/../models/Setor.php';
+require_once __DIR__ . '/../core/auth.php';
 
 
 class SolicitacaoController {
@@ -32,5 +33,97 @@ class SolicitacaoController {
         }
 
         require __DIR__ . '/../views/solicitacoes/create.php';
+    }
+
+    public function updateStatus() {
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        Auth::check();
+        $isAdmin = (($_SESSION['usuario']['nivel_acesso'] ?? '') === 'administrador');
+
+        if ($_POST) {
+            $id = $_POST['id'] ?? null;
+            if (!$id) {
+                $_SESSION['flash_error'] = 'ID da solicitação não informado.';
+                header('Location: index.php?rota=solicitacoes');
+                return;
+            }
+
+            $solModel = new Solicitacao();
+            $okStatus = true;
+
+            // atualizar status quando fornecido (apenas admin)
+            if (isset($_POST['situacao'])) {
+                if (!$isAdmin) {
+                    $_SESSION['flash_error'] = 'Você não tem permissão para alterar o status.';
+                    header('Location: index.php?rota=solicitacoes');
+                    return;
+                }
+                $status = $_POST['situacao'] ?? null;
+                $okStatus = $solModel->atualizarStatus($id, $status);
+            }
+
+            // atualizar descrição quando fornecida
+            if (isset($_POST['descricao'])) {
+                $descricao = $_POST['descricao'];
+                $okDesc = $solModel->atualizarDescricao($id, $descricao);
+                if (!$okDesc) {
+                    $_SESSION['flash_error'] = 'Erro ao atualizar descrição.';
+                }
+            }
+
+            // atualizar itens (substitui todos)
+            if (isset($_POST['itens']) && is_array($_POST['itens'])) {
+                require_once __DIR__ . '/../models/SolicitacaoEquipamento.php';
+                $itmModel = new SolicitacaoEquipamento();
+                $itmModel->deleteBySolicitacao($id);
+                foreach ($_POST['itens'] as $item) {
+                    $ide = $item['equipamento'] ?? null;
+                    $qtd = $item['quantidade'] ?? null;
+                    if ($ide && $qtd) {
+                        $itmModel->adicionar($id, $ide, $qtd);
+                    }
+                }
+            }
+
+            if ($okStatus) {
+                $_SESSION['flash_success'] = 'Solicitação atualizada com sucesso.';
+            } else {
+                $_SESSION['flash_error'] = 'Erro ao atualizar status.';
+            }
+        }
+
+        header('Location: index.php?rota=solicitacoes');
+        return;
+    }
+
+    public function edit() {
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        Auth::check();
+        Auth::nivel('administrador');
+
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            $_SESSION['flash_error'] = 'Solicitação não informada.';
+            header('Location: index.php?rota=solicitacoes');
+            return;
+        }
+
+        $solModel = new Solicitacao();
+        $sol = $solModel->find($id);
+        require_once __DIR__ . '/../models/Equipamento.php';
+        require_once __DIR__ . '/../models/SolicitacaoEquipamento.php';
+
+        $equipModel = new Equipamento();
+        $equipamentos = $equipModel->listar();
+
+        $itmModel = new SolicitacaoEquipamento();
+        $itens = $itmModel->listarPorSolicitacao($id);
+        if (!$sol) {
+            $_SESSION['flash_error'] = 'Solicitação não encontrada.';
+            header('Location: index.php?rota=solicitacoes');
+            return;
+        }
+
+        require __DIR__ . '/../views/solicitacoes/solicitacoes_update.php';
     }
 }
