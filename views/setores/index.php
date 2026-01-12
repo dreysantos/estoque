@@ -60,7 +60,24 @@ body { background: linear-gradient(135deg, #f7fafc, #eef2f7, #e0f7ff); min-heigh
                         <tr>
                             <td><?= $s['id'] ?></td>
                             <td><?= $s['nome'] ?></td>
-                            <td><?= $s['telefone'] ?></td>
+                            <td>
+                                <?php
+                                    $telefone = $s['telefone'];
+                                    if(strlen($s['telefone']) == 8)
+                                    {
+                                        $telefone = substr($s['telefone'],0,4)."-".substr($s['telefone'],4,4);
+                                    }
+                                    else if(strlen($s['telefone']) == 9)
+                                    {
+                                        $telefone = substr($s['telefone'],0,1)." ".substr($s['telefone'],1,4)."-".substr($s['telefone'],5,4);
+                                    }
+                                    else if(strlen($s['telefone']) == 11)
+                                    {
+                                        $telefone = "(".substr($s['telefone'],0,2).") ".substr($s['telefone'],2,1)." ".substr($s['telefone'],3,4)."-".substr($s['telefone'],7,4);
+                                    }
+                                ?>
+                                <?=$telefone?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

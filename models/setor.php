@@ -9,13 +9,13 @@ class Setor {
     }
 
     public function listar() {
-        return $this->db->query("SELECT * FROM setores")->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt = $this->db->query("SELECT * FROM setores")->fetchAll();
     }
 
     public function criar($nome, $descricao, $telefone) {
         $stmt = $this->db->prepare(
             "INSERT INTO setores (nome, descricao, telefone) VALUES (?, ?, ?)"
         );
-        return $stmt->execute([$nome, $descricao, $telefone]);
+        return $stmt->execute([$nome, $descricao, preg_replace('/[^0-9]/', '', $telefone)]);
     }
 }

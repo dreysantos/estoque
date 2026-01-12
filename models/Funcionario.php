@@ -34,7 +34,7 @@ class Funcionario {
             (id_setor, nome, sobrenome, telefone, numero_matricula, cpf)
             VALUES (?, ?, ?, ?, ?, ?)
         ");
-        return $stmt->execute([$id_setor, $nome, $sobrenome, $telefone, $matricula, $cpf]);
+        return $stmt->execute([$id_setor, $nome, $sobrenome, preg_replace('/[^0-9]/', '', $telefone), $matricula, preg_replace('/[^0-9]/', '', $cpf)]);
     }
 
     public function atualizar($id, $id_setor, $nome, $sobrenome, $telefone, $matricula, $cpf) {
@@ -43,7 +43,7 @@ class Funcionario {
             SET id_setor = ?, nome = ?, sobrenome = ?, telefone = ?, numero_matricula = ?, cpf = ?
             WHERE id = ?
         ");
-        return $stmt->execute([$id_setor, $nome, $sobrenome, $telefone, $matricula, $cpf, $id]);
+        return $stmt->execute([$id_setor, $nome, $sobrenome, preg_replace('/[^0-9]/', '', $telefone), $matricula, preg_replace('/[^0-9]/', '', $cpf), $id]);
     }
 
     public function deletar($id) {
