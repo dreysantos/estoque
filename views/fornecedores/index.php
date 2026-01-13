@@ -203,7 +203,14 @@ tbody tr:last-child td {
                     <td><?= $f['id'] ?></td>
                     <td><?= $f['nome_fantasia'] ?></td>
                     <td><?= $f['razao_social'] ?></td>
-                    <td><?= $f['cnpj'] ?></td>
+                    <td>
+                        <?php
+                            $cnpj = $f['cnpj'];
+                            if(strlen($cnpj) == 14)
+                                $cnpj = substr($f['cnpj'],0,2).".".substr($f['cnpj'],2,3).".".substr($f['cnpj'],5,3)."/".substr($f['cnpj'],8,4)."-".substr($f['cnpj'],12,2);
+                        ?>
+                        <?= $cnpj ?>
+                    </td>
                     <td>
                         <div class="acoes">
                             <a href="?rota=fornecedor_edit&id=<?= $f['id'] ?>" class="btn btn-editar">Editar</a>

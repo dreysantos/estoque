@@ -17,6 +17,6 @@ class Fornecedor {
             INSERT INTO fornecedores (nome_fantasia, razao_social, cnpj)
             VALUES (?, ?, ?)
         ");
-        return $stmt->execute([$nome, $razao, $cnpj]);
+        return $stmt->execute([$nome, $razao, preg_replace('/[^0-9]/', '', $cnpj)]);
     }
 }
