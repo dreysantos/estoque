@@ -213,8 +213,12 @@ tbody tr:last-child td {
                     </td>
                     <td>
                         <div class="acoes">
-                            <a href="?rota=fornecedor_edit&id=<?= $f['id'] ?>" class="btn btn-editar">Editar</a>
-                            <a href="?rota=fornecedor_delete&id=<?= $f['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza?')">Deletar</a>
+                            <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+                                $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+                                if (in_array($nivel, ['avancado','administrador'])): ?>
+                                <a href="?rota=fornecedor_edit&id=<?= $f['id'] ?>" class="btn btn-editar">Editar</a>
+                                <a href="?rota=fornecedor_delete&id=<?= $f['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza?')">Deletar</a>
+                            <?php endif; ?>
                         </div>
                     </td>
                 </tr>

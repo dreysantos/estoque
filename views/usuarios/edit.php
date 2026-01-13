@@ -1,7 +1,7 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; }
 
-/* Paleta única: crimson/cream (não usada antes) */
+/* Paleta crimson/cream para manter consistência com usuários */
 body {
     background: linear-gradient(135deg, #fff7f0, #f9f3ee, #fdeee6);
     min-height: 100vh;
@@ -16,14 +16,14 @@ h2 {
     margin-bottom: 24px;
     font-size: 30px;
     font-weight: 800;
-    color: #7f1d1d; /* deep crimson */
+    color: #7f1d1d;
 }
 
 form {
     background: #ffffff;
     padding: 28px;
     border-radius: 14px;
-    border: 2px solid #b91c1c; /* brick red */
+    border: 2px solid #b91c1c;
     box-shadow: 0 10px 30px rgba(185, 28, 28, 0.16);
 }
 
@@ -34,7 +34,7 @@ select, input[type="text"], input[type="password"] {
     width: 100%;
     padding: 12px;
     border-radius: 10px;
-    border: 1px solid #fecaca; /* light rose border (not pink theme) */
+    border: 1px solid #fecaca;
     background: #ffffff;
     color: #111827;
     font-size: 14px;
@@ -73,14 +73,14 @@ button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 20p
 </style>
 
 <div class="container">
-    <h2>Novo Usuário</h2>
-    <form method="post" action="index.php?rota=usuario_create">
+    <h2>Editar Usuário</h2>
+    <form method="post" action="index.php?rota=usuario_edit&id=<?= htmlspecialchars($usuario['id']) ?>">
         <div class="field">
             <label for="id_funcionario">Funcionário</label>
             <select name="id_funcionario" id="id_funcionario" required>
                 <option value="">Selecione</option>
                 <?php foreach ($funcionarios as $f): ?>
-                    <option value="<?= htmlspecialchars($f['id']) ?>">
+                    <option value="<?= htmlspecialchars($f['id']) ?>" <?= ($usuario['id_funcionario'] == $f['id']) ? 'selected' : '' ?>>
                         <?= htmlspecialchars($f['nome']) ?> <?= htmlspecialchars($f['sobrenome']) ?>
                     </option>
                 <?php endforeach; ?>
@@ -89,31 +89,27 @@ button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 20p
 
         <div class="field">
             <label for="nome">Usuário</label>
-            <input id="nome" name="nome" type="text" placeholder="Usuário" required>
+            <input id="nome" name="nome" type="text" placeholder="Usuário" value="<?= htmlspecialchars($usuario['nome']) ?>" required>
         </div>
 
         <div class="field">
-            <label for="senha">Senha</label>
-            <input id="senha" type="password" name="senha" placeholder="Senha" required>
+            <label for="senha">Nova Senha (opcional)</label>
+            <input id="senha" type="password" name="senha" placeholder="Deixe em branco para manter a atual">
+            <div class="help-text">Preencha apenas se desejar alterar a senha.</div>
         </div>
 
         <div class="field">
             <label for="nivel">Nível</label>
             <select name="nivel" id="nivel">
-                <option value="basico">Básico</option>
-                <option value="medio">Médio</option>
-                <option value="avancado">Avançado</option>
-                <option value="administrador">Administrador</option>
+                <option value="basico" <?= $usuario['nivel_acesso']==='basico'?'selected':'' ?>>Básico</option>
+                <option value="medio" <?= $usuario['nivel_acesso']==='medio'?'selected':'' ?>>Médio</option>
+                <option value="avancado" <?= $usuario['nivel_acesso']==='avancado'?'selected':'' ?>>Avançado</option>
+                <option value="administrador" <?= $usuario['nivel_acesso']==='administrador'?'selected':'' ?>>Administrador</option>
             </select>
-            <div class="help-text">
-                <strong>Avançado & Administrador:</strong> Podem alterar tudo.<br>
-                <strong>Médio:</strong> Gerenciar EPI, funcionário, fornecedor; fazer entrada e saída de equipamentos; fazer solicitações.<br>
-                <strong>Básico:</strong> Pode fazer solicitação.
-            </div>
         </div>
 
         <div class="actions">
-            <button type="submit">Salvar</button>
+            <button type="submit">Salvar alterações</button>
         </div>
     </form>
 </div>

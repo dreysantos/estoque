@@ -25,6 +25,30 @@ if ($usuarioSess && $nivelSess === 'basico') {
     }
 }
 
+// se for usuário médio, limitar rotas permitidas a funcionalidades específicas
+if ($usuarioSess && $nivelSess === 'medio') {
+    $allowed = [
+        'home', 'dashboard',
+        // solicitações (apenas criação e listagem)
+        'solicitacoes', 'solicitacoes_create',
+        // equipamentos (apenas listagem e cadastro)
+        'equipamentos', 'equipamento_create',
+        // funcionários (apenas listagem e cadastro)
+        'funcionarios', 'funcionario_create',
+        // fornecedores (apenas listagem e cadastro)
+        'fornecedores', 'fornecedor_create',
+        // entradas/saídas (apenas listagem e cadastro)
+        'entradas', 'entrada_create', 'saidas', 'saida_create',
+        // logout
+        'logout'
+    ];
+    if (!in_array($rota, $allowed)) {
+        $_SESSION['flash_error'] = 'Acesso negado para seu nível de usuário.';
+        header('Location: index.php?rota=home');
+        exit;
+    }
+}
+
 // ==========================
 // ROTAS
 // ==========================
@@ -71,6 +95,15 @@ switch ($rota) {
     case 'funcionario_create':
         require_once __DIR__ . '/../controllers/FuncionarioController.php';
         (new FuncionarioController())->create();
+        break;
+    case 'funcionario_edit':
+        require_once __DIR__ . '/../controllers/FuncionarioController.php';
+        (new FuncionarioController())->edit();
+        break;
+
+    case 'funcionario_delete':
+        require_once __DIR__ . '/../controllers/FuncionarioController.php';
+        (new FuncionarioController())->delete();
         break;
 
     // ---------- USUÁRIOS ----------
@@ -129,6 +162,10 @@ switch ($rota) {
     case 'saidas':
         require_once __DIR__ . '/../controllers/SaidaController.php';
         (new SaidaController())->index();
+        break;
+    case 'saida_create':
+        require_once __DIR__ . '/../controllers/SaidaController.php';
+        (new SaidaController())->create();
         break;
 
 

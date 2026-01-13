@@ -250,70 +250,114 @@ body {
     ?>
 
     <ul class="cards-grid">
-        <?php if ($nivel !== 'basico'): ?>
-        <li class="card">
-            <div class="card-icon">🏢</div>
-            <h3 class="card-title">Setores</h3>
-            <div class="card-links">
-                <a href="index.php?rota=setores" class="card-link">Listar Setores</a>
-                <a href="index.php?rota=setor_create" class="card-link">Criar Setor</a>
-            </div>
-        </li>
+        <?php if (in_array($nivel, ['avancado','administrador'])): ?>
+            <li class="card">
+                <div class="card-icon">🏢</div>
+                <h3 class="card-title">Setores</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=setores" class="card-link">Listar Setores</a>
+                    <a href="index.php?rota=setor_create" class="card-link">Criar Setor</a>
+                </div>
+            </li>
 
-        <li class="card">
-            <div class="card-icon">👥</div>
-            <h3 class="card-title">Funcionários</h3>
-            <div class="card-links">
-                <a href="index.php?rota=funcionarios" class="card-link">Listar Funcionários</a>
-                <a href="index.php?rota=funcionario_create" class="card-link">Criar Funcionário</a>
-            </div>
-        </li>
+            <li class="card">
+                <div class="card-icon">👥</div>
+                <h3 class="card-title">Funcionários</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=funcionarios" class="card-link">Listar Funcionários</a>
+                    <a href="index.php?rota=funcionario_create" class="card-link">Criar Funcionário</a>
+                </div>
+            </li>
 
-        <li class="card">
-            <div class="card-icon">👤</div>
-            <h3 class="card-title">Usuários</h3>
-            <div class="card-links">
-                <a href="index.php?rota=usuarios" class="card-link">Listar Usuários</a>
-                <a href="index.php?rota=usuario_create" class="card-link">Criar Usuário</a>
-            </div>
-        </li>
+            <li class="card">
+                <div class="card-icon">👤</div>
+                <h3 class="card-title">Usuários</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=usuarios" class="card-link">Listar Usuários</a>
+                    <a href="index.php?rota=usuario_create" class="card-link">Criar Usuário</a>
+                </div>
+            </li>
 
-        <li class="card">
-            <div class="card-icon">📦</div>
-            <h3 class="card-title">Equipamentos</h3>
-            <div class="card-links">
-                <a href="index.php?rota=equipamentos" class="card-link">Listar Equipamentos</a>
-                <a href="index.php?rota=equipamento_create" class="card-link">Criar Equipamento</a>
-            </div>
-        </li>
+            <li class="card">
+                <div class="card-icon">📦</div>
+                <h3 class="card-title">Equipamentos</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=equipamentos" class="card-link">Listar Equipamentos</a>
+                    <a href="index.php?rota=equipamento_create" class="card-link">Criar Equipamento</a>
+                </div>
+            </li>
 
-        <li class="card">
-            <div class="card-icon">🏭</div>
-            <h3 class="card-title">Fornecedores</h3>
-            <div class="card-links">
-                <a href="index.php?rota=fornecedores" class="card-link">Listar Fornecedores</a>
-                <a href="index.php?rota=fornecedor_create" class="card-link">Criar Fornecedor</a>
-            </div>
-        </li>
+            <li class="card">
+                <div class="card-icon">🏭</div>
+                <h3 class="card-title">Fornecedores</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=fornecedores" class="card-link">Listar Fornecedores</a>
+                    <a href="index.php?rota=fornecedor_create" class="card-link">Criar Fornecedor</a>
+                </div>
+            </li>
 
-        <li class="card">
-            <div class="card-icon">📥</div>
-            <h3 class="card-title">Entradas</h3>
-            <div class="card-links">
-                <a href="index.php?rota=entradas" class="card-link">Listar Entradas</a>
-                <a href="index.php?rota=entrada_create" class="card-link">Registrar Entrada</a>
-            </div>
-        </li>
+            <li class="card">
+                <div class="card-icon">📥</div>
+                <h3 class="card-title">Entradas</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=entradas" class="card-link">Listar Entradas</a>
+                    <a href="index.php?rota=entrada_create" class="card-link">Registrar Entrada</a>
+                </div>
+            </li>
 
-        <li class="card">
-            <div class="card-icon">📤</div>
-            <h3 class="card-title">Saídas</h3>
-            <div class="card-links">
-                <a href="index.php?rota=saidas" class="card-link">Listar Saídas</a>
-                <a href="index.php?rota=saida_create" class="card-link">Registrar Saída</a>
-            </div>
-        </li>
+            <li class="card">
+                <div class="card-icon">📤</div>
+                <h3 class="card-title">Saídas</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=saidas" class="card-link">Listar Saídas</a>
+                    <a href="index.php?rota=saida_create" class="card-link">Registrar Saída</a>
+                </div>
+            </li>
+        <?php elseif ($nivel === 'medio'): ?>
+            <li class="card">
+                <div class="card-icon">📦</div>
+                <h3 class="card-title">Equipamentos</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=equipamentos" class="card-link">Listar Equipamentos</a>
+                    <a href="index.php?rota=equipamento_create" class="card-link">Criar Equipamento</a>
+                </div>
+            </li>
 
+            <li class="card">
+                <div class="card-icon">🏭</div>
+                <h3 class="card-title">Fornecedores</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=fornecedores" class="card-link">Listar Fornecedores</a>
+                    <a href="index.php?rota=fornecedor_create" class="card-link">Criar Fornecedor</a>
+                </div>
+            </li>
+
+            <li class="card">
+                <div class="card-icon">👥</div>
+                <h3 class="card-title">Funcionários</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=funcionarios" class="card-link">Listar Funcionários</a>
+                    <a href="index.php?rota=funcionario_create" class="card-link">Criar Funcionário</a>
+                </div>
+            </li>
+
+            <li class="card">
+                <div class="card-icon">📥</div>
+                <h3 class="card-title">Entradas</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=entradas" class="card-link">Listar Entradas</a>
+                    <a href="index.php?rota=entrada_create" class="card-link">Registrar Entrada</a>
+                </div>
+            </li>
+
+            <li class="card">
+                <div class="card-icon">📤</div>
+                <h3 class="card-title">Saídas</h3>
+                <div class="card-links">
+                    <a href="index.php?rota=saidas" class="card-link">Listar Saídas</a>
+                    <a href="index.php?rota=saida_create" class="card-link">Registrar Saída</a>
+                </div>
+            </li>
         <?php endif; ?>
         <li class="card">
             <div class="card-icon">📋</div>

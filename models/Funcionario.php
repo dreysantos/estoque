@@ -52,8 +52,22 @@ class Funcionario {
         return $stmt->execute([$id_setor, $nome, $sobrenome, preg_replace('/[^0-9]/', '', $telefone), $matricula, preg_replace('/[^0-9]/', '', $cpf), $id]);
     }
 
+    public function temUsuarioVinculado($id_funcionario) {
+        $stmt = $this->db->prepare("SELECT id FROM usuarios WHERE id_funcionario = ? LIMIT 1");
+        $stmt->execute([$id_funcionario]);
+        return (bool) $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function deletar($id) {
-        $stmt = $this->db->prepare("DELETE FROM funcionarios WHERE id = ?");
-        return $stmt->execute([$id]);
+        // Impedir exclusão se houver usuário vinculado para evitar erro de FK
+        if ($this->temUsuarioVinculado($id)) {
+            return false;
+        }
+        try {
+            $stmt = $this->db->prepare("DELETE FROM funcionarios WHERE id = ?");
+            return $stmt->execute([$id]);
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 }

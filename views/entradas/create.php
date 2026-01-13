@@ -1,3 +1,5 @@
+<?php require_once __DIR__ . '/../layout/header.php'; ?>
+
 <style>
 /* Theme: Dax/Alpha palette (navy + orange accent) */
 :root{
@@ -37,9 +39,10 @@ button[type="submit"], .btn-accent{ background: linear-gradient(135deg,var(--acc
 /* Ensure readable badges */
 .status-badge{ padding:6px 8px; background:#faf5ef; border-radius:6px; color:var(--muted); }
 </style>
-<h2>Nova Entrada</h2>
+<div class="container">
+    <h2>Nova Entrada</h2>
 
-<form method="post" action="index.php?rota=entrada_create">
+    <form method="post" action="index.php?rota=entrada_create">
     <label>Fornecedor (opcional)</label><br>
     <select name="id_fornecedor">
         <option value="">-- Nenhum --</option>
@@ -91,8 +94,11 @@ button[type="submit"], .btn-accent{ background: linear-gradient(135deg,var(--acc
 
     <button type="button" onclick="addRow()">Adicionar Item</button>
     <br><br>
-    <button>Salvar Entrada</button>
-</form>
+        <button>Salvar Entrada</button>
+    </form>
+</div>
+
+<?php require_once __DIR__ . '/../layout/footer.php'; ?>
 
 <script>
 function addRow() {

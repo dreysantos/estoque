@@ -225,7 +225,11 @@ tbody tr:last-child td {
                     <td><?= $f['numero_matricula'] ?></td>
                     <td>
                         <div class="acoes">
-                            <a href="?rota=funcionario_delete&id=<?= $f['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</a>
+                            <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+                                $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+                                if (in_array($nivel, ['avancado','administrador'])): ?>
+                                <a href="?rota=funcionario_delete&id=<?= $f['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</a>
+                            <?php endif; ?>
                         </div>
                     </td>
                 </tr>

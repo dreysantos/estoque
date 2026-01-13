@@ -13,4 +13,11 @@ class Auth {
             die("Acesso negado");
         }
     }
+
+    public static function nivelIn(array $niveis) {
+        $atual = $_SESSION['usuario']['nivel_acesso'] ?? null;
+        if (!in_array($atual, $niveis)) {
+            die("Acesso negado");
+        }
+    }
 }

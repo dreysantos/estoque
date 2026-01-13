@@ -126,8 +126,12 @@ tbody tr:hover {
                 <td><?= $s['funcionario'] ?></td>
                 <td>
                     <div class="acoes">
-                        <a href="index.php?rota=saida_edit&id=<?= $s['id'] ?>" class="btn btn-editar">Editar</a>
-                        <a href="index.php?rota=saida_delete&id=<?= $s['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza?')">Deletar</a>
+                        <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+                            $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+                            if (in_array($nivel, ['avancado','administrador'])): ?>
+                            <a href="index.php?rota=saida_edit&id=<?= $s['id'] ?>" class="btn btn-editar">Editar</a>
+                            <a href="index.php?rota=saida_delete&id=<?= $s['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza?')">Deletar</a>
+                        <?php endif; ?>
                     </div>
                 </td>
             </tr>

@@ -65,8 +65,12 @@ button[type="submit"], .btn-accent{ background: linear-gradient(135deg,var(--acc
                     <td><?= $e['funcionario'] ?></td>
                     <td>
                         <div class="acoes">
-                            <a href="?rota=entrada_edit&id=<?= $e['id'] ?>" class="btn btn-editar">Editar</a>
-                            <a href="?rota=entrada_delete&id=<?= $e['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza?')">Deletar</a>
+                            <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+                                $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+                                if (in_array($nivel, ['avancado','administrador'])): ?>
+                                <a href="?rota=entrada_edit&id=<?= $e['id'] ?>" class="btn btn-editar">Editar</a>
+                                <a href="?rota=entrada_delete&id=<?= $e['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza?')">Deletar</a>
+                            <?php endif; ?>
                         </div>
                     </td>
                 </tr>

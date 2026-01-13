@@ -42,6 +42,47 @@ if (!in_array($rota, $rotasPublicas)) {
 }
 
 // ============================
+// AUTORIZAÇÃO POR NÍVEL
+// ============================
+if (!in_array($rota, $rotasPublicas)) {
+    $nivelSess = $_SESSION['usuario']['nivel_acesso'] ?? null;
+
+    // Regras para nível básico
+    if ($nivelSess === 'basico') {
+        $allowed = ['home', 'solicitacoes', 'solicitacoes_create', 'logout'];
+        if (!in_array($rota, $allowed)) {
+            $_SESSION['flash_error'] = 'Acesso negado para seu nível de usuário.';
+            header('Location: index.php?rota=solicitacoes');
+            exit;
+        }
+    }
+
+    // Regras para nível médio
+    if ($nivelSess === 'medio') {
+        $allowed = [
+            'home', 'dashboard',
+            // solicitações (apenas criação e listagem)
+            'solicitacoes', 'solicitacoes_create',
+            // equipamentos (apenas listagem e cadastro)
+            'equipamentos', 'equipamento_create',
+            // funcionários (apenas listagem e cadastro)
+            'funcionarios', 'funcionario_create',
+            // fornecedores (apenas listagem e cadastro)
+            'fornecedores', 'fornecedor_create',
+            // entradas/saídas (apenas listagem e cadastro)
+            'entradas', 'entrada_create', 'saidas', 'saida_create',
+            // logout
+            'logout'
+        ];
+        if (!in_array($rota, $allowed)) {
+            $_SESSION['flash_error'] = 'Acesso negado para seu nível de usuário.';
+            header('Location: index.php?rota=home');
+            exit;
+        }
+    }
+}
+
+// ============================
 // LAYOUT
 // ============================
 require_once __DIR__ . '/../views/layout/header.php';
@@ -83,6 +124,10 @@ switch ($rota) {
         (new SetorController())->create();
         break;
 
+    case 'setor_edit':
+        (new SetorController())->edit();
+        break;
+
     // -------- FUNCIONÁRIOS --------
     case 'funcionarios':
         (new FuncionarioController())->index();
@@ -107,6 +152,14 @@ switch ($rota) {
 
     case 'usuario_create':
         (new UsuarioController())->create();
+        break;
+
+    case 'usuario_edit':
+        (new UsuarioController())->edit();
+        break;
+
+    case 'usuario_status':
+        (new UsuarioController())->status();
         break;
 
     // -------- EQUIPAMENTOS --------

@@ -1,4 +1,5 @@
 <style>
+    
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; }
 
 body { background: linear-gradient(135deg, #f7fafc, #eef2f7, #e0f7ff); min-height: 100vh; padding: 50px; color: #0f172a; }
@@ -52,7 +53,9 @@ body { background: linear-gradient(135deg, #f7fafc, #eef2f7, #e0f7ff); min-heigh
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Descrição</th>
                         <th>Telefone</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +63,7 @@ body { background: linear-gradient(135deg, #f7fafc, #eef2f7, #e0f7ff); min-heigh
                         <tr>
                             <td><?= $s['id'] ?></td>
                             <td><?= $s['nome'] ?></td>
+                            <td><?= htmlspecialchars($s['descricao']) ?></td>
                             <td>
                                 <?php
                                     $telefone = $s['telefone'];
@@ -77,6 +81,13 @@ body { background: linear-gradient(135deg, #f7fafc, #eef2f7, #e0f7ff); min-heigh
                                     }
                                 ?>
                                 <?=$telefone?>
+                            </td>
+                            <td>
+                                <a href="index.php?rota=setor_edit&id=<?= $s['id'] ?>" style="
+                                    display:inline-block; padding:8px 12px; border-radius:8px; text-decoration:none;
+                                    background: linear-gradient(135deg, #06b6d4, #0891b2); color:#fff; font-weight:700; font-size:12px;">
+                                    Editar Setor
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

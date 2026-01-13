@@ -203,11 +203,15 @@ tbody tr:last-child td {
                     <td><?= $e['quantidade'] ?></td>
                     <td><?= $e['ca'] ?></td>
                     <td>
-                        <div class="acoes">
-                            <a href="?rota=equipamento_edit&id=<?= $e['id'] ?>" class="btn btn-editar">Editar</a>
-                            <a href="?rota=equipamento_delete&id=<?= $e['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza?')">Deletar</a>
-                        </div>
-                    </td>
+                            <div class="acoes">
+                                <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+                                    $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+                                    if (in_array($nivel, ['avancado','administrador'])): ?>
+                                    <a href="?rota=equipamento_edit&id=<?= $e['id'] ?>" class="btn btn-editar">Editar</a>
+                                    <a href="?rota=equipamento_delete&id=<?= $e['id'] ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza?')">Deletar</a>
+                                <?php endif; ?>
+                            </div>
+                        </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

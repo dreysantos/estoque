@@ -18,4 +18,17 @@ class Setor {
         );
         return $stmt->execute([$nome, $descricao, preg_replace('/[^0-9]/', '', $telefone)]);
     }
+
+    public function buscarPorId($id) {
+        $stmt = $this->db->prepare("SELECT * FROM setores WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
+    public function atualizar($id, $nome, $descricao, $telefone) {
+        $stmt = $this->db->prepare(
+            "UPDATE setores SET nome = ?, descricao = ?, telefone = ? WHERE id = ?"
+        );
+        return $stmt->execute([$nome, $descricao, preg_replace('/[^0-9]/', '', $telefone), $id]);
+    }
 }

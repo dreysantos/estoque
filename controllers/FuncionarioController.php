@@ -101,12 +101,49 @@ class FuncionarioController {
         }
 
         $func = new Funcionario();
+
+        // GET: mostrar confirmação
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $temUsuario = $func->temUsuarioVinculado($id);
+            $funcionario = $func->buscarPorId($id);
+            require __DIR__ . '/../views/funcionarios/funcionario_delete.php';
+            return;
+        }
+
+        // POST: processar exclusão (com opção de remover usuário vinculado)
+        $alsoDeleteUser = isset($_POST['also_delete_user']) && $_POST['also_delete_user'] === '1';
+        $temUsuario = $func->temUsuarioVinculado($id);
+
+        if ($temUsuario && !$alsoDeleteUser) {
+            $_SESSION['flash_error'] = 'Não é possível excluir: existe usuário vinculado a este funcionário. Marque a opção para excluir o usuário vinculado.';
+            header('Location: index.php?rota=funcionarios');
+            exit;
+        }
+
+        if ($temUsuario && $alsoDeleteUser) {
+            require_once __DIR__ . '/../models/Usuario.php';
+            $usuarioModel = new Usuario();
+            $userIds = $usuarioModel->listarIdsPorFuncionario($id) ?: [];
+
+            // Se qualquer usuário tiver dependências, bloquear e orientar a desativação/transferência
+            foreach ($userIds as $uid) {
+                if ($usuarioModel->temDependencias($uid)) {
+                    $_SESSION['flash_error'] = 'Não é possível excluir o usuário vinculado: existem solicitações/entradas/saídas associadas. Desative o usuário ou transfira os registros antes.';
+                    header('Location: index.php?rota=funcionarios');
+                    exit;
+                }
+            }
+
+            // Sem dependências: pode excluir com segurança
+            $usuarioModel->deletarPorFuncionarioId($id);
+        }
+
         $ok = $func->deletar($id);
 
         if ($ok) {
             $_SESSION['flash_success'] = 'Funcionário deletado com sucesso.';
         } else {
-            $_SESSION['flash_error'] = 'Erro ao deletar funcionário.';
+            $_SESSION['flash_error'] = 'Erro ao deletar funcionário. Verifique vínculos e tente novamente.';
         }
 
         header('Location: index.php?rota=funcionarios');
