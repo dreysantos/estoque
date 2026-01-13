@@ -1,4 +1,6 @@
 <style>
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
+
 /* ==============================
    RESET BÁSICO
 ============================== */
@@ -7,7 +9,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
 
@@ -16,7 +18,7 @@
 ============================== */
 
 body {
-    background: linear-gradient(135deg, #f5f5f4, #e7e5e4, #fef3ec);
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     min-height: 100vh;
     padding: 40px;
     color: #1a1a1a;
@@ -36,9 +38,9 @@ h1, h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 36px;
-    color: #57534e;
+    color: var(--primary);
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: -0.5px;
 }
 
 
@@ -50,14 +52,14 @@ table {
     width: 100%;
     border-collapse: collapse;
     background: #ffffff;
-    box-shadow: 0 8px 24px rgba(120, 113, 108, 0.1);
+    box-shadow: 0 18px 50px rgba(11,61,145,0.06);
     border-radius: 12px;
     overflow: hidden;
-    border: 2px solid #d6d3d1;
+    border: none;
 }
 
 thead {
-    background: linear-gradient(90deg, #78716c, #57534e);
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
 }
 
 th {
@@ -73,8 +75,8 @@ th {
 
 td {
     padding: 16px 15px;
-    border-bottom: 1px solid #f5f5f4;
-    color: #44403c;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--muted);
     font-size: 14px;
 }
 
@@ -83,8 +85,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-    background: #fef3ec;
-    box-shadow: inset 0 0 10px rgba(120, 113, 108, 0.08);
+    background: #f6f9fc;
 }
 
 tbody tr:last-child td {
@@ -104,7 +105,7 @@ tbody tr:last-child td {
 .btn {
     padding: 8px 16px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     font-size: 13px;
@@ -114,14 +115,14 @@ tbody tr:last-child td {
 }
 
 .btn-editar {
-    background: #FFA07A;
+    background: var(--primary);
     color: #ffffff;
 }
 
 .btn-editar:hover {
-    background: #FF8C61;
+    background: var(--primary-2);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 160, 122, 0.3);
+    box-shadow: 0 4px 12px rgba(11,61,145,0.2);
 }
 
 .btn-deletar {
@@ -136,18 +137,19 @@ tbody tr:last-child td {
 }
 
 .btn-novo {
-    background: linear-gradient(135deg, #FFA07A, #FF8C61);
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
     color: #ffffff;
     padding: 12px 24px;
     font-size: 15px;
     margin-bottom: 25px;
     display: inline-block;
     border: none;
+    border-radius: 8px;
 }
 
 .btn-novo:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 160, 122, 0.35);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.15);
 }
 
 

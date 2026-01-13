@@ -27,4 +27,23 @@ class EntradaEquipamento {
 
         $this->db->commit();
     }
+
+    public function listarPorEntrada($id_entrada) {
+        $stmt = $this->db->prepare("
+            SELECT
+                id,
+                id_entrada,
+                nome,
+                marca,
+                tipo,
+                quantidade,
+                ca,
+                ca_validade
+            FROM view_entrada_equipamentos
+            WHERE id_entrada = ?
+            ORDER BY id
+        ");
+        $stmt->execute([(int) $id_entrada]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

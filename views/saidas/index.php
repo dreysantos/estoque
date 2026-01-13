@@ -1,14 +1,15 @@
 <style>
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
-/* Fundo claro com tom âmbar (sem rosa) */
 body {
-    background: linear-gradient(135deg, #fff7ed, #ffedd5, #fde68a);
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     min-height: 100vh;
     padding: 40px;
     color: #1a1a1a;
@@ -23,13 +24,13 @@ h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 36px;
-    color: #b45309;
-    font-weight: 800;
-    letter-spacing: 1px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .btn-novo {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
     color: #ffffff;
     padding: 12px 24px;
     font-size: 15px;
@@ -37,28 +38,28 @@ h2 {
     display: inline-block;
     border: none;
     border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.15);
     text-decoration: none;
     font-weight: 700;
 }
 
 .btn-novo:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(245, 158, 11, 0.45);
+    box-shadow: 0 10px 24px rgba(11,61,145,0.2);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     background: #ffffff;
-    box-shadow: 0 10px 30px rgba(217, 119, 6, 0.2);
+    box-shadow: 0 18px 50px rgba(11,61,145,0.06);
     border-radius: 12px;
     overflow: hidden;
-    border: 2px solid #f59e0b;
+    border: none;
 }
 
 thead {
-    background: linear-gradient(90deg, #f59e0b, #d97706);
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
 }
 
 th {
@@ -73,8 +74,8 @@ th {
 
 td {
     padding: 14px 14px;
-    border-bottom: 1px solid #ffedd5;
-    color: #7c2d12;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--muted);
     font-size: 14px;
 }
 
@@ -83,14 +84,17 @@ tbody tr {
 }
 
 tbody tr:hover {
-    background: #fff7ed;
-    box-shadow: inset 0 0 10px rgba(217, 119, 6, 0.12);
+    background: #f6f9fc;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
 }
 
 .acoes { display: flex; gap: 8px; }
-.btn { padding: 8px 14px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; text-decoration: none; display: inline-block; font-size: 13px; transition: all 0.3s ease; }
-.btn-editar { background: #f59e0b; color: #fff; }
-.btn-editar:hover { background: #d97706; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35); }
+.btn { padding: 8px 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; text-decoration: none; display: inline-block; font-size: 13px; transition: all 0.3s ease; }
+.btn-editar { background: var(--primary); color: #fff; }
+.btn-editar:hover { background: var(--primary-2); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(11,61,145,0.2); }
 .btn-deletar { background: #dc2626; color: #fff; }
 .btn-deletar:hover { background: #b91c1c; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35); }
 

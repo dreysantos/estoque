@@ -86,6 +86,16 @@ switch ($rota) {
         (new SetorController())->create();
         break;
 
+    case 'setor_edit':
+        require_once __DIR__ . '/../controllers/SetorController.php';
+        (new SetorController())->edit();
+        break;
+
+    case 'setor_delete':
+        require_once __DIR__ . '/../controllers/SetorController.php';
+        (new SetorController())->delete();
+        break;
+
     // ---------- FUNCIONÁRIOS ----------
     case 'funcionarios':
         require_once __DIR__ . '/../controllers/FuncionarioController.php';

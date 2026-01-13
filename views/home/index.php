@@ -1,31 +1,25 @@
 <style>
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
 /* ==============================
-   FUNDO GRADIENTE ANIMADO
+   FUNDO CLEAN
 ============================== */
 
 body {
-    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     min-height: 100vh;
     padding: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #1a1a1a;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
 
@@ -50,11 +44,10 @@ body {
 ============================== */
 
 .welcome-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: #fff;
     padding: 60px 50px;
-    border-radius: 24px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(  10px);
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(11,61,145,0.06);
     position: relative;
     overflow: hidden;
     animation: fadeInUp 0.8s ease;
@@ -78,7 +71,7 @@ body {
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
 }
 
 
@@ -104,11 +97,10 @@ body {
 
 h1 {
     font-size: 48px;
-    color: #1a202c;
-    font-weight: 900;
+    color: var(--primary);
+    font-weight: 700;
     margin-bottom: 20px;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.5px;
 }
 
 
@@ -118,7 +110,7 @@ h1 {
 
 .welcome-text {
     font-size: 20px;
-    color: #4a5568;
+    color: var(--muted);
     margin-bottom: 40px;
     line-height: 1.6;
     font-weight: 500;
@@ -150,26 +142,27 @@ h1 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
     color: white;
-    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.12);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 12px 26px rgba(11,61,145,0.16);
 }
 
 .btn-secondary {
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
-    border: 2px solid #667eea;
+    background: #f6f9fc;
+    color: var(--primary);
+    border: 2px solid var(--primary);
 }
 
 .btn-secondary:hover {
-    background: #667eea;
+    background: var(--primary);
     color: white;
     transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.12);
 }
 
 

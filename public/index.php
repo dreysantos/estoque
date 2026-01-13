@@ -70,7 +70,7 @@ if (!in_array($rota, $rotasPublicas)) {
             // fornecedores (apenas listagem e cadastro)
             'fornecedores', 'fornecedor_create',
             // entradas/saídas (apenas listagem e cadastro)
-            'entradas', 'entrada_create', 'saidas', 'saida_create',
+            'entradas', 'entrada_create', 'entrada_show', 'saidas', 'saida_create',
             // logout
             'logout'
         ];
@@ -126,6 +126,10 @@ switch ($rota) {
 
     case 'setor_edit':
         (new SetorController())->edit();
+        break;
+
+    case 'setor_delete':
+        (new SetorController())->delete();
         break;
 
     // -------- FUNCIONÁRIOS --------
@@ -193,6 +197,10 @@ switch ($rota) {
 
     case 'entrada_create':
         (new EntradaController())->create();
+        break;
+
+    case 'entrada_show':
+        (new EntradaController())->show();
         break;
 
     // -------- SAÍDAS --------

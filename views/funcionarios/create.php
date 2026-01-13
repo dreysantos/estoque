@@ -1,9 +1,11 @@
 <style>
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
 /* ==============================
@@ -11,7 +13,7 @@
 ============================== */
 
 body {
-    background: linear-gradient(135deg, #e0e7ff, #c7d2fe, #a5b4fc, #818cf8);
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     min-height: 100vh;
     padding: 40px;
     color: #1a1a1a;
@@ -25,12 +27,11 @@ body {
 form {
     max-width: 700px;
     margin: auto;
-    background: linear-gradient(160deg, #ffffff 0%, #f5f3ff 100%);
+    background: #ffffff;
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(129, 140, 248, 0.3);
-    border: 3px solid;
-    border-image: linear-gradient(135deg, #818cf8, #6366f1) 1;
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(11,61,145,0.06);
+    border: none;
 }
 
 
@@ -41,13 +42,10 @@ form {
 h1, h2 {
     text-align: center;
     margin-bottom: 30px;
-    font-size: 34px;
-    letter-spacing: 1.5px;
-    background: linear-gradient(135deg, #6366f1, #818cf8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -0.5px;
+    color: var(--primary);
+    font-weight: 700;
 }
 
 
@@ -58,24 +56,24 @@ h1, h2 {
 input,
 select {
     width: 100%;
-    margin-bottom: 22px;
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid #c7d2fe;
-    background: #ffffff;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    background: #f9fafb;
     color: #1a1a1a;
     font-size: 15px;
     transition: all 0.3s ease;
 }
 
 input::placeholder {
-    color: #818cf8;
-    font-weight: 500;
+    color: #9ca3af;
+    font-weight: 400;
 }
 
 select {
     cursor: pointer;
-    color: #4338ca;
+    color: var(--muted);
     font-weight: 500;
 }
 
@@ -89,10 +87,9 @@ select option {
 input:focus,
 select:focus {
     outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
-    background: #faf5ff;
-    transform: translateY(-2px);
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(11,61,145,0.1);
 }
 
 
@@ -101,26 +98,23 @@ select:focus {
 ============================== */
 
 button {
-    padding: 16px 32px;
-    border-radius: 10px;
+    padding: 14px 28px;
+    border-radius: 8px;
     border: none;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 1px;
     width: 100%;
-    font-size: 17px;
-    background: linear-gradient(135deg, #6366f1, #818cf8, #a5b4fc);
+    font-size: 16px;
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
     color: #ffffff;
     margin-top: 10px;
-    text-transform: uppercase;
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.15);
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5);
-    background: linear-gradient(135deg, #4f46e5, #6366f1, #818cf8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(11,61,145,0.2);
 }
 
 button:active {
@@ -134,13 +128,13 @@ button:active {
 
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 20px;
     }
     form {
         padding: 25px;
     }
     h1, h2 {
-        font-size: 26px;
+        font-size: 24px;
     }
 }
 </style>

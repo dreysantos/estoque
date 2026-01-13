@@ -53,4 +53,30 @@ class SetorController {
 
         require __DIR__ . '/../views/setores/edit.php';
     }
+
+    public function delete() {
+        $setor = new Setor();
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+            $_SESSION['flash_error'] = 'ID do setor não informado.';
+            header('Location: index.php?rota=setores');
+            exit;
+        }
+
+        // Verificar se há funcionários vinculados ao setor
+        if ($setor->temFuncionarios($id)) {
+            if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+            $_SESSION['flash_error'] = 'Não é possível deletar este setor pois existem funcionários vinculados a ele.';
+            header('Location: index.php?rota=setores');
+            exit;
+        }
+
+        $setor->deletar($id);
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        $_SESSION['flash_success'] = 'Setor deletado com sucesso.';
+        header('Location: index.php?rota=setores');
+        exit;
+    }
 }

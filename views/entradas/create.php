@@ -9,35 +9,184 @@
     --accent-2:#ff6a00;
     --bg-1:#f4f7fb;
     --bg-2:#eef6ff;
-    --muted:#2b3d5a;
+    --muted:#536776;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
 body{
-    background: linear-gradient(135deg,var(--bg-1),var(--bg-2));
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     color: #1f2937;
+    min-height: 100vh;
+    padding: 40px;
 }
 
-/* Header */
-.header h2, h2{ color: var(--primary); }
-.header .actions a, .btn-primary{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; }
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(11,61,145,0.06);
+}
 
-/* Accent button */
-button[type="submit"], .btn-accent{ background: linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; }
+h2 {
+    color: var(--primary);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
 
-/* Table */
-.table-wrap{ border-color: var(--primary); }
-.table thead th{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; }
-.table tbody tr:nth-child(odd){ background:#f8fbff; }
-.table tbody tr:hover{ background:#eaf2ff; }
+h3 {
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
 
-/* Card links */
-.card-link:hover{ background: linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; border-color:var(--primary); }
+label {
+    display: block;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
 
-/* Small helpers */
-.back a{ color: var(--primary); }
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+}
 
-/* Ensure readable badges */
-.status-badge{ padding:6px 8px; background:#faf5ef; border-radius:6px; color:var(--muted); }
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(11,61,145,0.1);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button[type="submit"],
+.btn-primary {
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
+    color: #fff;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover,
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.15);
+}
+
+button[type="button"] {
+    background: #f3f4f6;
+    color: var(--muted);
+    padding: 10px 20px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button[type="button"]:hover {
+    background: #e5e7eb;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th {
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table input,
+table select {
+    margin-bottom: 0;
+}
+
+table button {
+    background: #ef4444;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+table button:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
 </style>
 <div class="container">
     <h2>Nova Entrada</h2>
@@ -94,7 +243,7 @@ button[type="submit"], .btn-accent{ background: linear-gradient(135deg,var(--acc
 
     <button type="button" onclick="addRow()">Adicionar Item</button>
     <br><br>
-        <button>Salvar Entrada</button>
+    <button type="submit">Salvar Entrada</button>
     </form>
 </div>
 

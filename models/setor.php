@@ -31,4 +31,16 @@ class Setor {
         );
         return $stmt->execute([$nome, $descricao, preg_replace('/[^0-9]/', '', $telefone), $id]);
     }
+
+    public function temFuncionarios($id) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) as total FROM funcionarios WHERE id_setor = ?");
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+        return $result['total'] > 0;
+    }
+
+    public function deletar($id) {
+        $stmt = $this->db->prepare("DELETE FROM setores WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
 }

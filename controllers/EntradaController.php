@@ -50,4 +50,28 @@ class EntradaController {
 
         require __DIR__ . '/../views/entradas/create.php';
     }
+
+    public function show() {
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+
+        $id = $_GET['id'] ?? null;
+        if ($id === null || $id === '' || !ctype_digit((string) $id)) {
+            $_SESSION['flash_error'] = 'Entrada inválida.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        $entradaModel = new Entrada();
+        $entrada = $entradaModel->buscarDetalhes((int) $id);
+        if (!$entrada) {
+            $_SESSION['flash_error'] = 'Entrada não encontrada.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        $ee = new EntradaEquipamento();
+        $itens = $ee->listarPorEntrada((int) $id);
+
+        require __DIR__ . '/../views/entradas/show.php';
+    }
 }

@@ -1,36 +1,46 @@
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Roboto', Arial, sans-serif; }
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
 
-/* Paleta crimson/cream para combinar com create */
-body { background: linear-gradient(135deg, #fff7f0, #f9f3ee, #fdeee6); min-height: 100vh; padding: 50px; color: #111827; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif; }
+
+body { background: linear-gradient(180deg,var(--bg-1),var(--bg-2)); min-height: 100vh; padding: 50px; color: #111827; }
 .container { max-width: 1000px; margin: 48px auto 0 auto; }
 
 .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
-.header h2 { font-size: 30px; font-weight: 800; color: #7f1d1d; }
-.header .actions a { display: inline-block; text-decoration: none; background: linear-gradient(135deg, #F5DEB3, #E6CF9F); color: #1a1a1a; padding: 12px 16px; border-radius: 10px; font-weight: 700; box-shadow: 0 8px 20px rgba(245, 222, 179, 0.25); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.header .actions a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(245, 222, 179, 0.35); }
-.legend { background: #fffaf6; border: 1px solid #f3e0d7; padding: 14px 16px; border-radius: 10px; margin-bottom: 16px; color: #4b2b24; }
-.legend h3 { margin: 0 0 8px 0; font-size: 14px; font-weight: 800; color: #7f1d1d; }
+.header h2 { font-size: 30px; font-weight: 800; color: var(--primary); }
+
+.btn { display: inline-block; text-decoration: none; padding: 10px 14px; border-radius: 10px; font-weight: 700; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+.btn-primary { background: linear-gradient(90deg,var(--primary),var(--primary-2)); color: #ffffff; box-shadow: 0 8px 20px rgba(11,61,145,0.15); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(11,61,145,0.2); }
+.btn-secondary { background: #f6f9fc; color: var(--primary); border: 2px solid var(--primary); padding: 8px 12px; border-radius: 8px; }
+.btn-secondary:hover { background: var(--primary); color: #fff; transform: translateY(-1px); }
+
+.legend { background: #ffffff; border: none; padding: 14px 16px; border-radius: 14px; margin-bottom: 16px; color: var(--muted); box-shadow: 0 18px 50px rgba(11,61,145,0.06); }
+.legend h3 { margin: 0 0 8px 0; font-size: 14px; font-weight: 800; color: var(--primary); }
 .legend ul { margin: 0; padding-left: 18px; }
 .legend li { margin-bottom: 6px; font-size: 13px; }
 
-.table-wrap { background: #ffffff; border-radius: 14px; border: 2px solid #F5DEB3; box-shadow: 0 10px 30px rgba(245, 222, 179, 0.16); overflow: hidden; }
+.table-wrap { background: #ffffff; border-radius: 14px; border: none; box-shadow: 0 18px 50px rgba(11,61,145,0.06); overflow: hidden; }
 .table { width: 100%; border-collapse: separate; border-spacing: 0; }
-.table thead th { background: linear-gradient(135deg, #F5DEB3, #E6CF9F); color: #1a1a1a; text-align: left; padding: 14px 16px; font-weight: 800; font-size: 14px; }
-.table tbody td { padding: 12px 16px; border-top: 1px solid #faf5ef; font-size: 14px; color: #111827; }
+.table thead th { background: linear-gradient(90deg,var(--primary),var(--primary-2)); color: #ffffff; text-align: left; padding: 14px 16px; font-weight: 800; font-size: 14px; }
+.table tbody td { padding: 12px 16px; border-top: 1px solid #f0f0f0; font-size: 14px; color: var(--muted); }
 .table tbody tr { background: #ffffff; transition: background 0.2s ease; }
-.table tbody tr:nth-child(odd) { background: #fefdfb; }
-.table tbody tr:hover { background: #faf5ef; }
+.table tbody tr:nth-child(odd) { background: #f9fafb; }
+.table tbody tr:hover { background: #f6f9fc; }
+
+.actions-col { white-space: nowrap; }
+.actions-col .btn { margin-right: 8px; }
+.btn-danger { background: #ef4444; color: #fff; border-radius: 8px; padding: 8px 12px; }
+.btn-danger:hover { background: #dc2626; transform: translateY(-1px); }
 
 .footer-actions { margin-top: 12px; text-align: center; }
-.footer-actions a { color: #C4A661; font-weight: 700; text-decoration: none; }
+.footer-actions a { color: var(--primary); font-weight: 700; text-decoration: none; }
 .footer-actions a:hover { text-decoration: underline; }
 
 @media (max-width: 768px) {
     body { padding: 26px; }
     .container { margin-top: 32px; }
     .header h2 { font-size: 24px; }
-    .header .actions a { padding: 10px 14px; }
 }
 </style>
 
@@ -40,8 +50,8 @@ body { background: linear-gradient(135deg, #fff7f0, #f9f3ee, #fdeee6); min-heigh
         <div class="actions">
             <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
                 $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
-                if (in_array($nivel, haystack: ['avancado','administrador'])): ?>
-                <a href="index.php?rota=usuario_create">➕ Criar Usuário</a>
+                if (in_array($nivel, ['avancado','administrador'], true)): ?>
+                <a href="index.php?rota=usuario_create" class="btn btn-primary">➕ Criar Usuário</a>
             <?php endif; ?>
         </div>
     </div>
@@ -80,12 +90,12 @@ body { background: linear-gradient(135deg, #fff7f0, #f9f3ee, #fdeee6); min-heigh
                             <td><?= htmlspecialchars($u['nivel_acesso']) ?></td>
                             <td><?= !empty($u['ativo']) ? 'Sim' : 'Não' ?></td>
                             <td><?= htmlspecialchars($u['numero_matricula']) ?></td>
-                            <td>
+                            <td class="actions-col">
                                 <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
                                 $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
                                 if (in_array($nivel, ['avancado','administrador'])): ?>
-                                    <a href="index.php?rota=usuario_edit&id=<?= urlencode((string)$u['id']) ?>" style="margin-right:10px;">Editar</a>
-                                    <a href="index.php?rota=usuario_status&id=<?= urlencode((string)$u['id']) ?>">Ativar/Desativar</a>
+                                    <a href="index.php?rota=usuario_edit&id=<?= urlencode((string)$u['id']) ?>" class="btn btn-secondary">Editar</a>
+                                    <a href="index.php?rota=usuario_status&id=<?= urlencode((string)$u['id']) ?>" class="btn btn-primary">Ativar/Desativar</a>
                                 <?php else: ?>
                                     —
                                 <?php endif; ?>

@@ -1,152 +1,100 @@
 <style>
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
-/* ==============================
-   FUNDO DA PÁGINA
-============================== */
-
 body {
-    background: linear-gradient(135deg, #E0FFFF, #D0F5F5, #C0EDED, #B0E5E5);
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     min-height: 100vh;
     padding: 40px;
     color: #1a1a1a;
 }
 
-
-/* ==============================
-   CONTAINER DO FORMULÁRIO
-============================== */
-
 form {
     max-width: 700px;
     margin: auto;
-    background: linear-gradient(160deg, #ffffff 0%, #F0FFFF 100%);
+    background: #ffffff;
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(160, 200, 200, 0.2);
-    border: 3px solid;
-    border-image: linear-gradient(135deg, #B0E5E5, #90D5D5) 1;
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(11,61,145,0.06);
+    border: none;
 }
-
-
-/* ==============================
-   TÍTULOS
-============================== */
 
 h1, h2 {
     text-align: center;
     margin-bottom: 30px;
-    font-size: 34px;
-    letter-spacing: 1.5px;
-    background: linear-gradient(135deg, #4A9A9A, #3A7A7A);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -0.5px;
+    color: var(--primary);
+    font-weight: 700;
 }
-
-
-/* ==============================
-   LABELS
-============================== */
 
 label {
     font-weight: 600;
     font-size: 14px;
-    color: #3A7A7A;
+    color: var(--muted);
     display: block;
     margin-bottom: 8px;
 }
 
-
-/* ==============================
-   INPUTS
-============================== */
-
 input[type="text"],
-input[name="nome"],
-input[name="razao"],
-input[name="cnpj"],
 input {
     width: 100%;
-    margin-bottom: 22px;
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid #C0EDED;
-    background: #ffffff;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    background: #f9fafb;
     color: #1a1a1a;
     font-size: 15px;
     transition: all 0.3s ease;
 }
 
 input::placeholder {
-    color: #5AAFAF;
-    font-weight: 500;
+    color: #9ca3af;
+    font-weight: 400;
 }
-
-
-/* FOCUS */
 
 input:focus {
     outline: none;
-    border-color: #70CFCF;
-    box-shadow: 0 0 0 4px rgba(112, 207, 207, 0.2);
-    background: #F0FFFF;
-    transform: translateY(-2px);
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(11,61,145,0.1);
 }
 
-
-/* ==============================
-   BOTÕES
-============================== */
-
 button {
-    padding: 16px 32px;
-    border-radius: 10px;
+    padding: 14px 28px;
+    border-radius: 8px;
     border: none;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 1px;
     width: 100%;
-    font-size: 17px;
-    background: linear-gradient(135deg, #70CFCF, #5AAFAF, #4A9A9A);
+    font-size: 16px;
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
     color: #ffffff;
     margin-top: 10px;
-    text-transform: uppercase;
-    box-shadow: 0 6px 20px rgba(74, 154, 154, 0.3);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.15);
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(74, 154, 154, 0.4);
-    background: linear-gradient(135deg, #5AAFAF, #70CFCF, #90D5D5);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(11,61,145,0.2);
 }
 
 button:active {
     transform: translateY(-1px);
 }
 
-
-/* ==============================
-   RESPONSIVO
-============================== */
-
 @media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-    form {
-        padding: 25px;
-    }
-    h1, h2 {
-        font-size: 26px;
-    }
+    body { padding: 20px; }
+    form { padding: 25px; }
+    h1, h2 { font-size: 24px; }
 }
 </style>
 
@@ -156,6 +104,6 @@ button:active {
 <input name="nome" placeholder="Nome Fantasia" required>
 <input name="razao" placeholder="Razão Social" required>
 <input name="cnpj" placeholder="CNPJ" required>
-<button>Salvar</button>
+<button type="submit">Salvar</button>
 </form>
 

@@ -1,17 +1,19 @@
 <style>
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
 /* ==============================
-   FUNDO DA PÁGINA (ÂMBAR)
+   FUNDO DA PÁGINA
 ============================== */
 
 body {
-    background: linear-gradient(135deg, #fff7ed, #ffedd5, #fde68a);
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     min-height: 100vh;
     padding: 40px;
     color: #1a1a1a;
@@ -26,24 +28,24 @@ form {
     max-width: 900px;
     margin: auto;
     background: #ffffff;
-    padding: 35px;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(217, 119, 6, 0.25);
-    border: 2px solid #f59e0b;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(11,61,145,0.06);
+    border: none;
 }
 
 
 /* ==============================
-   MENSAGEM DE ERRO (ÂMBAR)
+   MENSAGEM DE ERRO
 ============================== */
 
 .error-message {
-    background: linear-gradient(135deg, #fff7ed, #ffedd5);
-    color: #7c2d12;
+    background: #fff4f4;
+    color: #b91c1c;
     padding: 15px 20px;
     border-radius: 10px;
     margin-bottom: 25px;
-    border-left: 4px solid #f59e0b;
+    border-left: 4px solid #ef4444;
     font-weight: 600;
 }
 
@@ -54,18 +56,18 @@ form {
 
 h2 {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     font-size: 32px;
-    letter-spacing: 1px;
-    color: #b45309;
+    letter-spacing: -0.5px;
+    color: var(--primary);
+    font-weight: 700;
 }
 
 h3 {
-    margin: 30px 0 15px;
-    font-size: 22px;
-    color: #d97706;
-    border-left: 4px solid #f59e0b;
-    padding-left: 10px;
+    margin: 30px 0 20px;
+    font-size: 24px;
+    color: var(--primary);
+    font-weight: 700;
 }
 
 
@@ -74,9 +76,11 @@ h3 {
 ============================== */
 
 label {
+    display: block;
     font-weight: 600;
     font-size: 14px;
-    color: #7c2d12;
+    color: var(--muted);
+    margin-bottom: 8px;
 }
 
 
@@ -88,19 +92,19 @@ select,
 input[type="number"],
 textarea {
     width: 100%;
-    margin-top: 6px;
-    padding: 12px;
+    margin-bottom: 20px;
+    padding: 12px 16px;
     border-radius: 8px;
-    border: 1px solid #fbbf24;
-    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    background: #f9fafb;
     color: #1a1a1a;
-    font-size: 14px;
+    font-size: 15px;
     transition: all 0.3s ease;
 }
 
 textarea {
     resize: vertical;
-    min-height: 90px;
+    min-height: 100px;
 }
 
 
@@ -110,8 +114,9 @@ select:focus,
 input:focus,
 textarea:focus {
     outline: none;
-    border-color: #f59e0b;
-    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(11,61,145,0.1);
 }
 
 
@@ -123,25 +128,34 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th {
-    background: linear-gradient(90deg, #f59e0b, #d97706);
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
     color: #ffffff;
     text-align: left;
-    padding: 14px;
+    padding: 12px;
     font-size: 14px;
+    font-weight: 700;
     letter-spacing: 0.5px;
 }
 
 td {
     padding: 12px;
-    background: #fff7ed;
-    border-bottom: 1px solid #ffedd5;
+    border-bottom: 1px solid #f0f0f0;
 }
 
-tr:hover td {
-    background: #ffedd5;
+tr:last-child td {
+    border-bottom: none;
+}
+
+table input,
+table select {
+    margin-bottom: 0;
 }
 
 
@@ -150,55 +164,60 @@ tr:hover td {
 ============================== */
 
 button {
-    padding: 12px 22px;
+    padding: 14px 28px;
     border-radius: 8px;
     border: none;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 0.5px;
 }
 
 
 /* Botão principal */
 
-button[type="submit"],
-form>button:last-of-type {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
+button[type="submit"] {
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
     color: #ffffff;
     margin-top: 25px;
 }
 
 button[type="submit"]:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.15);
 }
 
 
 /* Botão adicionar item */
 
 button[type="button"] {
-    background: #fff7ed;
-    color: #b45309;
-    border: 2px solid #f59e0b;
+    background: #f3f4f6;
+    color: var(--muted);
+    padding: 10px 20px;
+    border: 2px solid #e5e7eb;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
 button[type="button"]:hover {
-    background: #f59e0b;
-    color: #ffffff;
+    background: #e5e7eb;
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 
 /* Botão remover */
 
 td button {
-    background: #b45309;
+    background: #ef4444;
     color: #ffffff;
-    padding: 8px 14px;
+    padding: 6px 12px;
+    font-size: 12px;
 }
 
 td button:hover {
-    background: #92400e;
+    background: #dc2626;
+    transform: translateY(-1px);
 }
 
 
@@ -289,7 +308,7 @@ td button:hover {
 
     <button type="button" onclick="addRow()">Adicionar Item</button>
     <br><br>
-    <button>Salvar Saída</button>
+    <button type="submit">Salvar Saída</button>
 </form>
 
 <script>

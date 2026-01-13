@@ -1,11 +1,13 @@
 <?php require_once __DIR__ . '/../layout/header.php'; ?>
 
 <style>
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 
 /* ==============================
@@ -13,7 +15,7 @@
 ============================== */
 
 body {
-    background: linear-gradient(135deg, #f5f5f4, #e7e5e4, #fef3ec);
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     min-height: 100vh;
     padding: 40px;
     color: #1a1a1a;
@@ -28,10 +30,10 @@ form {
     max-width: 700px;
     margin: auto;
     background: #ffffff;
-    padding: 35px;
-    border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(255, 160, 122, 0.15);
-    border: 2px solid #d6d3d1;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 18px 50px rgba(11,61,145,0.06);
+    border: none;
 }
 
 
@@ -43,8 +45,9 @@ h1, h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 32px;
-    letter-spacing: 1px;
-    color: #57534e;
+    letter-spacing: -0.5px;
+    color: var(--primary);
+    font-weight: 700;
 }
 
 
@@ -55,7 +58,7 @@ h1, h2 {
 label {
     font-weight: 600;
     font-size: 14px;
-    color: #78716c;
+    color: var(--muted);
     display: block;
     margin-bottom: 8px;
 }
@@ -72,18 +75,18 @@ select,
 textarea {
     width: 100%;
     margin-bottom: 20px;
-    padding: 12px;
+    padding: 12px 16px;
     border-radius: 8px;
-    border: 1px solid #d6d3d1;
-    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    background: #f9fafb;
     color: #1a1a1a;
-    font-size: 14px;
+    font-size: 15px;
     transition: all 0.3s ease;
 }
 
 textarea {
     resize: vertical;
-    min-height: 90px;
+    min-height: 100px;
 }
 
 
@@ -93,8 +96,9 @@ input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: #FFA07A;
-    box-shadow: 0 0 0 3px rgba(255, 160, 122, 0.2);
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(11,61,145,0.1);
 }
 
 
@@ -106,23 +110,22 @@ button {
     padding: 14px 28px;
     border-radius: 8px;
     border: none;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 0.5px;
     width: 100%;
     font-size: 16px;
 }
 
 button[type="submit"] {
-    background: linear-gradient(135deg, #FFA07A, #FF8C61);
+    background: linear-gradient(90deg,var(--primary),var(--primary-2));
     color: #ffffff;
     margin-top: 10px;
 }
 
 button[type="submit"]:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 160, 122, 0.35);
+    box-shadow: 0 8px 20px rgba(11,61,145,0.15);
 }
 
 
@@ -132,13 +135,13 @@ button[type="submit"]:hover {
 
 @media (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 20px;
     }
     form {
         padding: 25px;
     }
     h1, h2 {
-        font-size: 26px;
+        font-size: 24px;
     }
 }
 </style>
