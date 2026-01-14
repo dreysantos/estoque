@@ -42,6 +42,19 @@ select, textarea {
     transition: all 0.3s ease;
 }
 
+<<<<<<< HEAD
+input.readonly {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #cfe2ff;
+    background: #f8fbff;
+    color: #1f2937;
+    font-size: 14px;
+}
+
+=======
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 textarea { min-height: 120px; resize: vertical; }
 
 select:focus, textarea:focus { outline: none; border-color: #0e5bb3; box-shadow: 0 0 0 3px rgba(14, 91, 179, 0.12); }
@@ -78,6 +91,41 @@ button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 20p
 <div class="container">
     <h2>Nova Solicitação</h2>
     <form method="post" action="index.php?rota=solicitacoes_create">
+<<<<<<< HEAD
+        <?php if (!empty($isBasico)): ?>
+            <div class="field">
+                <label>Setor</label>
+                <input class="readonly" type="text" value="<?= htmlspecialchars($setorSessNome ?? '') ?>" readonly>
+                <input type="hidden" name="id_setor" value="<?= htmlspecialchars($setorSessId ?? '') ?>">
+            </div>
+
+            <div class="field">
+                <label>Usuário (login)</label>
+                <input class="readonly" type="text" value="<?= htmlspecialchars($loginSess ?? '') ?>" readonly>
+                <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuarioSessId ?? '') ?>">
+            </div>
+        <?php else: ?>
+            <div class="field">
+                <label for="id_setor">Setor</label>
+                <select name="id_setor" id="id_setor" required>
+                    <option value="">Selecione</option>
+                    <?php foreach ($setores as $st): ?>
+                        <option value="<?= htmlspecialchars($st['id']) ?>"><?= htmlspecialchars($st['nome']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="id_usuario">Funcionário (usuário)</label>
+                <select name="id_usuario" id="id_usuario" required>
+                    <option value="">Selecione</option>
+                    <?php foreach ($usuarios as $u): ?>
+                        <option value="<?= htmlspecialchars($u['id']) ?>"><?= htmlspecialchars($u['usuario'] ?? ($u['nome'] ?? 'Usuário')) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        <?php endif; ?>
+=======
         <div class="field">
             <label for="id_setor">Setor</label>
             <select name="id_setor" id="id_setor" required>
@@ -97,6 +145,7 @@ button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 20p
                 <?php endforeach; ?>
             </select>
         </div>
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 
         <div class="field">
             <label for="descricao">Descrição</label>

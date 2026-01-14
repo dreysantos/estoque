@@ -74,4 +74,82 @@ class EntradaController {
 
         require __DIR__ . '/../views/entradas/show.php';
     }
+<<<<<<< HEAD
+
+    public function edit() {
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+        if (!in_array($nivel, ['avancado', 'administrador'], true)) {
+            $_SESSION['flash_error'] = 'Acesso negado.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        $id = $_GET['id'] ?? null;
+        if ($id === null || $id === '' || !ctype_digit((string)$id)) {
+            $_SESSION['flash_error'] = 'Entrada inválida.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        $entradaModel = new Entrada();
+        $entrada = $entradaModel->buscarPorId((int)$id);
+        if (!$entrada) {
+            $_SESSION['flash_error'] = 'Entrada não encontrada.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        $forn = new Fornecedor();
+        $fornecedores = $forn->listar();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_fornecedor = empty($_POST['id_fornecedor']) ? null : $_POST['id_fornecedor'];
+            $tipo = $_POST['tipo'] ?? '';
+            $situacao = $_POST['situacao'] ?? '';
+            $descricao = $_POST['descricao'] ?? null;
+
+            if (!$entradaModel->atualizar((int)$id, $id_fornecedor, $tipo, $situacao, $descricao)) {
+                $_SESSION['flash_error'] = $entradaModel->getLastError() ?: 'Não foi possível atualizar a entrada.';
+                header('Location: index.php?rota=entrada_edit&id=' . urlencode((string)$id));
+                return;
+            }
+
+            $_SESSION['flash_success'] = 'Entrada atualizada com sucesso.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        require __DIR__ . '/../views/entradas/edit.php';
+    }
+
+    public function delete() {
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
+        if (!in_array($nivel, ['avancado', 'administrador'], true)) {
+            $_SESSION['flash_error'] = 'Acesso negado.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        $id = $_GET['id'] ?? null;
+        if ($id === null || $id === '' || !ctype_digit((string)$id)) {
+            $_SESSION['flash_error'] = 'Entrada inválida.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        $entradaModel = new Entrada();
+        if (!$entradaModel->deletar((int)$id)) {
+            $_SESSION['flash_error'] = $entradaModel->getLastError() ?: 'Não foi possível deletar a entrada.';
+            header('Location: index.php?rota=entradas');
+            return;
+        }
+
+        $_SESSION['flash_success'] = 'Entrada deletada com sucesso.';
+        header('Location: index.php?rota=entradas');
+        return;
+    }
+=======
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 }

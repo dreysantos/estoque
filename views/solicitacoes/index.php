@@ -7,6 +7,10 @@ body { background: linear-gradient(135deg, #f4f7fb, #eef6ff); min-height: 100vh;
 
 .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
 .header h2 { font-size: 30px; font-weight: 800; color: #0b3d91; }
+<<<<<<< HEAD
+.header .actions { display:flex; align-items:center; justify-content:flex-end; gap:10px; flex-wrap:wrap; }
+=======
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 .header .actions a { display: inline-block; text-decoration: none; background: linear-gradient(135deg, #0b3d91, #0e5bb3); color: #ffffff; padding: 12px 16px; border-radius: 10px; font-weight: 700; box-shadow: 0 8px 20px rgba(11, 61, 145, 0.18); transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .header .actions a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(14, 91, 179, 0.25); }
 
@@ -20,6 +24,41 @@ body { background: linear-gradient(135deg, #f4f7fb, #eef6ff); min-height: 100vh;
 
 .empty { padding: 24px 20px; color: #2b3d5a; font-weight: 600; }
 
+<<<<<<< HEAD
+.btn-mini{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:999px;
+    text-decoration:none;
+    cursor:pointer;
+    font-size:13px;
+    line-height:1;
+    font-weight:800;
+    border:1px solid rgba(11, 61, 145, 0.25);
+    background:rgba(255,255,255,0.85);
+    color:#0b3d91;
+    box-shadow:0 10px 26px rgba(11,61,145,0.10);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn-mini:hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(11,61,145,0.14);background:#ffffff}
+.btn-mini:active{transform:translateY(0)}
+.btn-mini:focus-visible{outline:3px solid rgba(14, 91, 179, 0.25);outline-offset:2px}
+
+.btn-danger-mini{
+    border-color: rgba(185, 28, 28, 0.30);
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color:#ffffff;
+    box-shadow:0 12px 26px rgba(239, 68, 68, 0.18);
+}
+.btn-danger-mini:hover{box-shadow:0 16px 34px rgba(239, 68, 68, 0.24)}
+
+.btn-form{display:inline}
+.btn-form button{border:none}
+
+=======
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 @media (max-width: 768px) {
     body { padding: 20px; }
     .header h2 { font-size: 24px; }
@@ -62,9 +101,18 @@ body { background: linear-gradient(135deg, #f4f7fb, #eef6ff); min-height: 100vh;
                             <td><?= htmlspecialchars($s['funcionario']) ?></td>
                             <td>
                                 <?php if ($isAdmin): ?>
+<<<<<<< HEAD
+                                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                                        <span style="padding:6px 8px;background:#faf5ef;border:1px solid #efe1d0;border-radius:6px;color:#3b2b1f;"><?= htmlspecialchars(ucfirst($s['situacao'] ?? '')) ?></span>
+                                        <a class="btn-mini" href="index.php?rota=solicitacoes_edit&id=<?= htmlspecialchars($s['id']) ?>">Editar</a>
+                                        <form class="btn-form" method="post" action="index.php?rota=solicitacoes_delete&id=<?= htmlspecialchars($s['id']) ?>">
+                                            <button type="submit" class="btn-mini btn-danger-mini" onclick="return confirm('Deseja realmente excluir esta solicitação?');">🗑 Deletar</button>
+                                        </form>
+=======
                                     <div style="display:flex;gap:8px;align-items:center;">
                                         <span style="padding:6px 8px;background:#faf5ef;border:1px solid #efe1d0;border-radius:6px;color:#3b2b1f;"><?= htmlspecialchars(ucfirst($s['situacao'] ?? '')) ?></span>
                                         <a href="index.php?rota=solicitacoes_edit&id=<?= htmlspecialchars($s['id']) ?>" style="display:inline-block;padding:6px 8px;background:#f3efe9;border:1px solid #d0c6ba;border-radius:6px;text-decoration:none;color:#3b2b1f;">Editar</a>
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
                                     </div>
                                 <?php else: ?>
                                     <?= htmlspecialchars($s['situacao'] ?? '') ?>

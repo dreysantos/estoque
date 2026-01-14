@@ -143,7 +143,12 @@ tbody tr:last-child td{ border-bottom: none; }
                             <?php if (session_status() !== PHP_SESSION_ACTIVE) session_start();
                                 $nivel = $_SESSION['usuario']['nivel_acesso'] ?? null;
                                 if (in_array($nivel, ['avancado','administrador'])): ?>
+<<<<<<< HEAD
+                                <a href="?rota=entrada_edit&id=<?= urlencode((string)$e['id']) ?>" class="btn btn-editar">Editar</a>
+                                <a href="?rota=entrada_delete&id=<?= urlencode((string)$e['id']) ?>" class="btn btn-deletar" onclick="return confirm('Tem certeza que deseja deletar esta entrada? Isso vai estornar o estoque dos itens desta entrada.');">Deletar</a>
+=======
                                 <span style="color: var(--muted); font-weight: 600;">—</span>
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
                             <?php endif; ?>
                         </div>
                     </td>

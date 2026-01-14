@@ -2,6 +2,10 @@
 require_once __DIR__ . '/../models/Solicitacao.php';
 require_once __DIR__ . '/../models/Usuario.php';
 require_once __DIR__ . '/../models/Setor.php';
+<<<<<<< HEAD
+require_once __DIR__ . '/../models/Funcionario.php';
+=======
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 require_once __DIR__ . '/../core/auth.php';
 
 
@@ -14,19 +18,63 @@ class SolicitacaoController {
     }
 
     public function create() {
+<<<<<<< HEAD
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        Auth::check();
+
+        $nivel = $_SESSION['usuario']['nivel_acesso'] ?? '';
+        $isBasico = ($nivel === 'basico');
+
+        $usuarioSessId = $_SESSION['usuario']['id'] ?? null;
+        $loginSess = $_SESSION['usuario']['nome'] ?? '';
+        $funcSessId = $_SESSION['usuario']['id_funcionario'] ?? null;
+        $setorSessId = null;
+        $setorSessNome = '';
+
+        if ($isBasico) {
+            $funcModel = new Funcionario();
+            $func = $funcSessId ? $funcModel->buscarPorId($funcSessId) : null;
+            $setorSessId = $func['id_setor'] ?? null;
+            $setorSessNome = $func['setor'] ?? '';
+        } else {
+            $userModel = new Usuario();
+            $usuarios = $userModel->listar();
+
+            $setorModel = new Setor();
+            $setores = $setorModel->listar();
+        }
+=======
         $userModel = new Usuario();
         $usuarios = $userModel->listar();
 
         $setorModel = new Setor();
         $setores = $setorModel->listar();
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 
         if ($_POST) {
             $sol = new Solicitacao();
             $id_usuario = $_POST['id_usuario'] ?? null;
             $id_setor = $_POST['id_setor'] ?? null;
             $descricao = $_POST['descricao'] ?? null;
+<<<<<<< HEAD
+
+            // Usuário nível básico não escolhe solicitante/setor: força valores da sessão
+            if ($isBasico) {
+                $id_usuario = $usuarioSessId;
+                $id_setor = $setorSessId;
+            }
+
+            if (!$id_usuario || !$id_setor) {
+                $_SESSION['flash_error'] = 'Não foi possível identificar seu usuário/setor para criar a solicitação.';
+                header('Location: index.php?rota=solicitacoes_create');
+                return;
+            }
+
+            $id = $sol->criar($id_usuario, $id_setor, $descricao);
+=======
             $id = $sol->criar($id_usuario, $id_setor, $descricao);
             if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
             $_SESSION['flash_success'] = 'Solicitação criada com sucesso.';
             header('Location: index.php?rota=solicitacoes');
             return;
@@ -126,4 +174,38 @@ class SolicitacaoController {
 
         require __DIR__ . '/../views/solicitacoes/solicitacoes_update.php';
     }
+<<<<<<< HEAD
+
+    public function delete() {
+        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+        Auth::check();
+        Auth::nivel('administrador');
+
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            $_SESSION['flash_error'] = 'Solicitação não informada.';
+            header('Location: index.php?rota=solicitacoes');
+            return;
+        }
+
+        // Por segurança, só aceitar POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $_SESSION['flash_error'] = 'Ação inválida.';
+            header('Location: index.php?rota=solicitacoes');
+            return;
+        }
+
+        $solModel = new Solicitacao();
+        $ok = $solModel->excluir($id);
+        if ($ok) {
+            $_SESSION['flash_success'] = 'Solicitação excluída com sucesso.';
+        } else {
+            $msg = method_exists($solModel, 'getLastError') ? $solModel->getLastError() : null;
+            $_SESSION['flash_error'] = $msg ?: 'Não foi possível excluir a solicitação.';
+        }
+        header('Location: index.php?rota=solicitacoes');
+        return;
+    }
+=======
+>>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 }
