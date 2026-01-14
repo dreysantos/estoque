@@ -73,7 +73,21 @@ class SetorController {
             exit;
         }
 
-        $setor->deletar($id);
+        // Verificar se há solicitações vinculadas ao setor
+        if ($setor->temSolicitacoes($id)) {
+            if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+            $_SESSION['flash_error'] = 'Não é possível deletar este setor pois existem solicitações vinculadas a ele.';
+            header('Location: index.php?rota=setores');
+            exit;
+        }
+
+        if (!$setor->deletar($id)) {
+            if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+            $_SESSION['flash_error'] = $setor->getLastError() ?: 'Não foi possível deletar o setor.';
+            header('Location: index.php?rota=setores');
+            exit;
+        }
+
         if (session_status() !== PHP_SESSION_ACTIVE) session_start();
         $_SESSION['flash_success'] = 'Setor deletado com sucesso.';
         header('Location: index.php?rota=setores');

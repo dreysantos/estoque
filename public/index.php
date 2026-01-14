@@ -190,6 +190,14 @@ switch ($rota) {
         (new FornecedorController())->create();
         break;
 
+    case 'fornecedor_edit':
+        (new FornecedorController())->edit();
+        break;
+
+    case 'fornecedor_delete':
+        (new FornecedorController())->delete();
+        break;
+
     // -------- ENTRADAS --------
     case 'entradas':
         (new EntradaController())->index();
@@ -209,6 +217,14 @@ switch ($rota) {
         break;
     case 'saida_create':
         (new SaidaController())->create();
+        break;
+
+    case 'saida_edit':
+        (new SaidaController())->edit();
+        break;
+
+    case 'saida_delete':
+        (new SaidaController())->delete();
         break;
 
 

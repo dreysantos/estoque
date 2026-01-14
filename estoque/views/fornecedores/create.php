@@ -1,8 +1,5 @@
-<?php
-// $dados vem do FornecedorController::edit()
-?>
 <style>
-:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
+:root{ --primary:#0b3d91; --primary-2:#0e5bb3; --accent:#ff8a00; --bg-1:#f4f7fb; --bg-2:#eef6ff; --muted:#536776 }
 
 * {
     margin: 0;
@@ -28,7 +25,7 @@ form {
     border: none;
 }
 
-h2 {
+h1, h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 32px;
@@ -90,24 +87,23 @@ button:hover {
     box-shadow: 0 10px 24px rgba(11,61,145,0.2);
 }
 
+button:active {
+    transform: translateY(-1px);
+}
+
 @media (max-width: 768px) {
     body { padding: 20px; }
     form { padding: 25px; }
-    h2 { font-size: 24px; }
+    h1, h2 { font-size: 24px; }
 }
 </style>
 
-<h2>Editar Fornecedor</h2>
+<h2>Cadastrar Fornecedor</h2>
 
-<form method="post" action="index.php?rota=fornecedor_edit&id=<?= htmlspecialchars($dados['id']) ?>">
-    <label for="nome">Nome Fantasia</label>
-    <input id="nome" name="nome" placeholder="Nome Fantasia" value="<?= htmlspecialchars($dados['nome_fantasia']) ?>" required>
-
-    <label for="razao">Razão Social</label>
-    <input id="razao" name="razao" placeholder="Razão Social" value="<?= htmlspecialchars($dados['razao_social']) ?>" required>
-
-    <label for="cnpj">CNPJ</label>
-    <input id="cnpj" name="cnpj" placeholder="CNPJ" value="<?= htmlspecialchars($dados['cnpj']) ?>" required>
-
-    <button type="submit">Salvar alterações</button>
+<form method="post" action="index.php?rota=fornecedor_create">
+<input name="nome" placeholder="Nome Fantasia" required>
+<input name="razao" placeholder="Razão Social" required>
+<input name="cnpj" placeholder="CNPJ" required>
+<button type="submit">Salvar</button>
 </form>
+

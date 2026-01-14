@@ -7,8 +7,8 @@
     <style>
         /* garantir que o conteúdo não fique atrás do header fixo; aumentar espaço para flash/form */
         body { padding-top:96px !important; }
-        .site-header{position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 12px;height:72px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(0,0,0,0.04);background:rgba(255,255,255,0.02);backdrop-filter:blur(4px);z-index:1200}
-        .site-header h1{color:var(--primary, #0b3d91);margin:0;font-size:24px;font-weight:800;line-height:1}
+        .site-header{position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 12px;min-height:72px;height:auto;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(0,0,0,0.04);background:rgba(255,255,255,0.02);backdrop-filter:blur(4px);z-index:1200}
+        .site-header h1{color:var(--primary, #0b3d91);margin:0;font-size:clamp(28px, 3vw, 40px);font-weight:800;line-height:1.1}
         .flash-success, .flash-error {
             max-width:1100px;
             margin:14px auto 18px; /* espaço maior entre header e formulário */

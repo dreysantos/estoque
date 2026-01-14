@@ -3,9 +3,15 @@ require_once __DIR__ . '/../core/Database.php';
 
 class Setor {
     private $db;
+    private $lastError;
 
     public function __construct() {
         $this->db = Database::connect();
+        $this->lastError = null;
+    }
+
+    public function getLastError() {
+        return $this->lastError;
     }
 
     public function listar() {
@@ -39,8 +45,22 @@ class Setor {
         return $result['total'] > 0;
     }
 
+    public function temSolicitacoes($id) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) as total FROM solicitacoes WHERE id_setor = ?");
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+        return $result['total'] > 0;
+    }
+
     public function deletar($id) {
-        $stmt = $this->db->prepare("DELETE FROM setores WHERE id = ?");
-        return $stmt->execute([$id]);
+        $this->lastError = null;
+        try {
+            $stmt = $this->db->prepare("DELETE FROM setores WHERE id = ?");
+            return $stmt->execute([$id]);
+        } catch (PDOException $e) {
+            // 23000/1451: violação de integridade (FK) — registro referenciado em outra tabela
+            $this->lastError = 'Não é possível deletar este setor pois existem registros vinculados a ele.';
+            return false;
+        }
     }
 }
