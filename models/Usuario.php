@@ -33,12 +33,7 @@ class Usuario {
         $stmt = $this->db->prepare("
             SELECT * 
             FROM usuarios 
-<<<<<<< HEAD
             WHERE nome = ?
-=======
-            WHERE nome = ? 
-              AND ativo = 1
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
         ");
         $stmt->execute([$nome]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

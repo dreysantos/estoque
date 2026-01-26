@@ -42,7 +42,6 @@ select, textarea {
     transition: all 0.3s ease;
 }
 
-<<<<<<< HEAD
 input.readonly {
     width: 100%;
     padding: 12px;
@@ -53,8 +52,6 @@ input.readonly {
     font-size: 14px;
 }
 
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 textarea { min-height: 120px; resize: vertical; }
 
 select:focus, textarea:focus { outline: none; border-color: #0e5bb3; box-shadow: 0 0 0 3px rgba(14, 91, 179, 0.12); }
@@ -91,7 +88,6 @@ button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 20p
 <div class="container">
     <h2>Nova Solicitação</h2>
     <form method="post" action="index.php?rota=solicitacoes_create">
-<<<<<<< HEAD
         <?php if (!empty($isBasico)): ?>
             <div class="field">
                 <label>Setor</label>

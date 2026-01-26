@@ -8,13 +8,9 @@ class AuthController {
     }
 
     public function login() {
-<<<<<<< HEAD
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-=======
-        session_start();
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 
         $nome  = $_POST['nome'] ?? '';
         $senha = $_POST['senha'] ?? '';
@@ -22,15 +18,12 @@ class AuthController {
         $usuarioModel = new Usuario();
         $usuario = $usuarioModel->buscarPorNome($nome);
 
-<<<<<<< HEAD
         if ($usuario && empty($usuario['ativo'])) {
             $_SESSION['erro'] = 'Usuário desativado. Contate a administração.';
             header('Location: index.php?rota=login');
             exit;
         }
 
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
         if ($usuario && password_verify($senha, $usuario['senha'])) {
             $_SESSION['usuario'] = $usuario;
             header('Location: index.php?rota=home');
@@ -43,13 +36,9 @@ class AuthController {
     }
 
     public function logout() {
-<<<<<<< HEAD
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-=======
-        session_start();
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
         session_destroy();
         header('Location: index.php?rota=login');
         exit;

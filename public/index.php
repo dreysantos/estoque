@@ -2,10 +2,7 @@
 // ============================
 // INICIALIZAÇÃO
 // ============================
-<<<<<<< HEAD
 ob_start();
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 session_start();
 
 require_once __DIR__ . '/../core/Database.php';
@@ -215,7 +212,6 @@ switch ($rota) {
         (new EntradaController())->show();
         break;
 
-<<<<<<< HEAD
     case 'entrada_edit':
         (new EntradaController())->edit();
         break;
@@ -224,8 +220,6 @@ switch ($rota) {
         (new EntradaController())->delete();
         break;
 
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
     // -------- SAÍDAS --------
     case 'saidas':
         (new SaidaController())->index();
@@ -260,13 +254,10 @@ switch ($rota) {
         (new SolicitacaoController())->updateStatus();
         break;
 
-<<<<<<< HEAD
     case 'solicitacoes_delete':
         (new SolicitacaoController())->delete();
         break;
 
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
     // -------- 404 --------
     default:
         echo "<h2>Página não encontrada</h2>";
@@ -279,11 +270,8 @@ switch ($rota) {
 // em vez de incluí-lo, emito os fechamentos HTML diretamente até corrigi-lo.
 // Layout footer
 require_once __DIR__ . '/../views/layout/footer.php';
-<<<<<<< HEAD
 
-// liberar o buffer de saída
+// Liberar o buffer de saída
 if (ob_get_level() > 0) {
     ob_end_flush();
 }
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351

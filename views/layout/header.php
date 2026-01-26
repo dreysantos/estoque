@@ -9,7 +9,6 @@
         body { padding-top:96px !important; }
         .site-header{position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 12px;min-height:72px;height:auto;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(0,0,0,0.04);background:rgba(255,255,255,0.02);backdrop-filter:blur(4px);z-index:1200}
         .site-header h1{color:var(--primary, #0b3d91);margin:0;font-size:clamp(28px, 3vw, 40px);font-weight:800;line-height:1.1}
-<<<<<<< HEAD
 
         /* Botão global "Voltar para Home" (reposicionado via JS para combinar com cada tela) */
         .global-home-wrap{display:flex;gap:10px;margin:0 0 16px 0}
@@ -26,8 +25,6 @@
             .global-home-wrap{margin:0 0 14px 0}
             .global-home-btn{padding:9px 12px;font-size:13px}
         }
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
         .flash-success, .flash-error {
             max-width:1100px;
             margin:14px auto 18px; /* espaço maior entre header e formulário */
@@ -58,17 +55,11 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-=======
-<header class="site-header"><h1>Sistema De Gerenciamento De Estoque</h1></header>
-
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 <?php
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-<<<<<<< HEAD
 $rotaAtual = $_GET['rota'] ?? null;
 ?>
 <header class="site-header">
@@ -76,8 +67,7 @@ $rotaAtual = $_GET['rota'] ?? null;
 </header>
 
 <?php
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
+
 if (!empty($_SESSION['flash_success'])) {
     echo '<div class="flash-success">' . htmlspecialchars($_SESSION['flash_success']) . '</div>';
     unset($_SESSION['flash_success']);
@@ -88,7 +78,6 @@ if (!empty($_SESSION['flash_error'])) {
     unset($_SESSION['flash_error']);
 }
 ?>
-<<<<<<< HEAD
 
 <?php
 // Botão global de retorno: será reposicionado para o lugar certo por JS
@@ -152,5 +141,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <?php endif; ?>
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
+

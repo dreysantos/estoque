@@ -4,7 +4,6 @@ require_once __DIR__ . '/../core/Database.php';
 class Equipamento {
 
     private $db;
-<<<<<<< HEAD
     private $lastError;
 
     public function __construct() {
@@ -14,11 +13,6 @@ class Equipamento {
 
     public function getLastError() {
         return $this->lastError;
-=======
-
-    public function __construct() {
-        $this->db = Database::connect();
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
     }
 
     public function listar() {
@@ -64,7 +58,6 @@ class Equipamento {
     }
 
     public function excluir($id) {
-<<<<<<< HEAD
         $this->lastError = null;
         try {
             $stmt = $this->db->prepare("DELETE FROM equipamentos WHERE id = ?");
@@ -79,9 +72,5 @@ class Equipamento {
             }
             return false;
         }
-=======
-        $stmt = $this->db->prepare("DELETE FROM equipamentos WHERE id = ?");
-        return $stmt->execute([$id]);
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
     }
 }

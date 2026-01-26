@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 // $dados, $itens, $solicitacoes e $usuarios vêm do SaidaController::edit()
 ?>

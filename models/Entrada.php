@@ -3,7 +3,6 @@ require_once __DIR__ . '/../core/Database.php';
 
 class Entrada {
     private $db;
-<<<<<<< HEAD
     private $lastError;
 
     public function __construct() {
@@ -13,11 +12,6 @@ class Entrada {
 
     public function getLastError() {
         return $this->lastError;
-=======
-
-    public function __construct() {
-        $this->db = Database::connect();
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
     }
 
     public function listar() {
@@ -68,7 +62,6 @@ class Entrada {
         $stmt->execute([(int) $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-<<<<<<< HEAD
 
     public function buscarPorId($id) {
         $stmt = $this->db->prepare('SELECT * FROM entradas WHERE id = ?');
@@ -140,6 +133,4 @@ class Entrada {
             return false;
         }
     }
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 }

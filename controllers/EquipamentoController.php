@@ -91,7 +91,6 @@ class EquipamentoController {
         }
 
         // POST: excluir
-<<<<<<< HEAD
         $ok = $equipModel->excluir($id);
         if (session_status() !== PHP_SESSION_ACTIVE) session_start();
         if ($ok) {
@@ -100,11 +99,6 @@ class EquipamentoController {
             $msg = method_exists($equipModel, 'getLastError') ? $equipModel->getLastError() : null;
             $_SESSION['flash_error'] = $msg ?: 'Não foi possível excluir este equipamento.';
         }
-=======
-        $equipModel->excluir($id);
-        if (session_status() !== PHP_SESSION_ACTIVE) session_start();
-        $_SESSION['flash_success'] = 'Equipamento excluído com sucesso.';
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
         header("Location: index.php?rota=equipamentos");
     }
 }

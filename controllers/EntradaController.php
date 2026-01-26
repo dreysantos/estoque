@@ -74,7 +74,6 @@ class EntradaController {
 
         require __DIR__ . '/../views/entradas/show.php';
     }
-<<<<<<< HEAD
 
     public function edit() {
         if (session_status() !== PHP_SESSION_ACTIVE) session_start();
@@ -150,6 +149,4 @@ class EntradaController {
         header('Location: index.php?rota=entradas');
         return;
     }
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
 }

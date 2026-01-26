@@ -3,7 +3,6 @@ require_once __DIR__ . '/../core/Database.php';
 
 class Solicitacao {
     private $db;
-<<<<<<< HEAD
     private $lastError;
 
     public function __construct() {
@@ -19,11 +18,6 @@ class Solicitacao {
         $stmt = $this->db->prepare("SELECT COUNT(*) FROM saidas WHERE id_solicitacao = ?");
         $stmt->execute([$id_solicitacao]);
         return ((int)$stmt->fetchColumn()) > 0;
-=======
-
-    public function __construct() {
-        $this->db = Database::connect();
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
     }
 
     public function listar() {
@@ -58,7 +52,6 @@ class Solicitacao {
         $stmt = $this->db->prepare("UPDATE solicitacoes SET descricao = ? WHERE id = ?");
         return $stmt->execute([$descricao, $id]);
     }
-<<<<<<< HEAD
 
     public function excluir($id) {
         $this->lastError = null;
@@ -95,6 +88,5 @@ class Solicitacao {
             return false;
         }
     }
-=======
->>>>>>> 31348f86707aba1a2bf779fbbb100b9e9eb83351
+
 }
