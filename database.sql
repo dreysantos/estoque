@@ -1,5 +1,5 @@
 -- create database estoque_equipamentos_final;
--- use estoque_equipamentos_final;
+ use estoque_equipamentos_final;
 
 DROP TABLE IF EXISTS saida_equipamentos;
 DROP TABLE IF EXISTS saidas;
